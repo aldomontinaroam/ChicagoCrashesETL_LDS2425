@@ -11,7 +11,7 @@ from datetime import datetime
 from time import sleep
 
 from geopy.geocoders import Photon, OpenCage, Nominatim
-from geopy.exc import GeocoderTimedOut, GeocoderQuotaExceeded
+from geopy.exc import GeocoderTimedOut, GeocoderQuotaExceeded, GeocoderInsufficientPrivileges
 from shapely.geometry import Point
 from shapely.wkt import loads
 import h3
@@ -94,34 +94,46 @@ class DataProcessor:
                     row['YEAR'] = None
                     row['QUARTER'] = None
         print("Date processing complete.")
-        
-    def correct_num_units(self, data_crashes, data_vehicles):
+    
+    @staticmethod
+    def correct_num_units(data_crashes, data_vehicles):
         """
-        Correct the NUM_UNITS in the data_crashes DataFrame based on the actual count of unique UNIT_NO 
-        associated with each RD_NO in the data_vehicles DataFrame.
+        Correct the NUM_UNITS in the data_crashes list of dictionaries based on the actual count of unique UNIT_NO 
+        associated with each RD_NO in the data_vehicles list of dictionaries.
 
         Args:
-        - data_crashes (pd.DataFrame): DataFrame containing crash information with NUM_UNITS.
-        - data_vehicles (pd.DataFrame): DataFrame containing vehicle information with UNIT_NO.
+        - data_crashes (list[dict]): List of dictionaries containing crash information with NUM_UNITS.
+        - data_vehicles (list[dict]): List of dictionaries containing vehicle information with UNIT_NO.
 
         Returns:
-        - pd.DataFrame: Updated version of data_crashes with corrected NUM_UNITS.
+        - list[dict]: Updated version of data_crashes with corrected NUM_UNITS.
         """
         # Step 1: Count unique UNIT_NO in data_vehicles for each RD_NO
-        unique_units = data_vehicles.groupby('RD_NO')['UNIT_NO'].nunique().reset_index()
-        unique_units.rename(columns={'UNIT_NO': 'Corrected_NUM_UNITS'}, inplace=True)
-
-        # Step 2: Merge unique unit counts with data_crashes
-        corrected_crashes = data_crashes.merge(unique_units, on='RD_NO', how='left')
-
-        # Step 3: Update NUM_UNITS with the corrected count where applicable
-        corrected_crashes['NUM_UNITS'] = corrected_crashes['Corrected_NUM_UNITS'].fillna(corrected_crashes['NUM_UNITS'])
-
-        # Drop the helper column (optional)
-        corrected_crashes.drop(columns=['Corrected_NUM_UNITS'], inplace=True)
-
-        return corrected_crashes
+        rd_no_to_units = {}
+        for vehicle in data_vehicles:
+            rd_no = vehicle['RD_NO']
+            unit_no = vehicle['UNIT_NO']
+            if rd_no not in rd_no_to_units:
+                rd_no_to_units[rd_no] = set()
+            rd_no_to_units[rd_no].add(unit_no)
         
+        # Calculate the number of unique UNIT_NO for each RD_NO
+        rd_no_to_unit_count = {rd_no: len(units) for rd_no, units in rd_no_to_units.items()}
+        
+        # Step 2: Update NUM_UNITS in data_crashes based on rd_no_to_unit_count
+        corrected_crashes = []
+        with tqdm(total=len(data_crashes), desc="NumUnits Correction") as numunits_bar:
+            for crash in data_crashes:
+                rd_no = crash['RD_NO']
+                # Use corrected count if it exists, otherwise retain original NUM_UNITS
+                corrected_num_units = rd_no_to_unit_count.get(rd_no, crash['NUM_UNITS'])
+                updated_crash = crash.copy()
+                updated_crash['NUM_UNITS'] = corrected_num_units
+                corrected_crashes.append(updated_crash)
+                numunits_bar.update(1)
+                
+        return corrected_crashes
+
 class DataGeocoder:
     def __init__(self):
         self.photon = Photon(user_agent="geoapiExercises", timeout=10)
@@ -139,7 +151,7 @@ class DataGeocoder:
                     if location:
                         latitude, longitude = location.latitude, location.longitude
                         return latitude, longitude, Point(longitude, latitude)
-                except (GeocoderTimedOut, GeocoderQuotaExceeded):
+                except (GeocoderTimedOut, GeocoderQuotaExceeded, GeocoderInsufficientPrivileges):
                     sleep(5)
         print(f"Geocoding failed for '{address}'")
         return None, None, None
@@ -163,7 +175,7 @@ class DataGeocoder:
                 location = geocoder.geocode(address)
                 if location:
                     return location.latitude, location.longitude
-            except (GeocoderTimedOut, GeocoderQuotaExceeded):
+            except (GeocoderTimedOut, GeocoderQuotaExceeded, GeocoderInsufficientPrivileges):
                 continue
         return None, None
 
