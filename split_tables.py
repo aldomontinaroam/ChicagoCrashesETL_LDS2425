@@ -128,7 +128,7 @@ schema_features = {
     ],
     "DateDimension": [
         "CRASH_DATE", "YEAR", "QUARTER", "CRASH_MONTH", "DAY",
-        "CRASH_DAY_OF_WEEK", "CRASH_HOUR", "MINUTE", "SEC"
+        "CRASH_DAY_OF_WEEK", "CRASH_HOUR", "MINUTE"
     ],
     "PersonDimension": [
         "PERSON_ID", "CITY", "STATE", "SEX", "AGE", "PERSON_TYPE","UNIT_NO", "UNIT_TYPE",
@@ -136,7 +136,7 @@ schema_features = {
         "BAC_RESULT", "EJECTION"
     ],
     "VehicleDimension": [
-        "VEHICLE_ID", "MAKE", "MODEL", "VEHICLE_YEAR", "VEHICLE_TYPE",
+        "CRASH_UNIT_ID", "VEHICLE_ID", "MAKE", "MODEL", "VEHICLE_YEAR", "VEHICLE_TYPE",
         "VEHICLE_DEFECT", "VEHICLE_USE", "SAFETY_EQUIPMENT", "AIRBAG_DEPLOYED", 
         "LIC_PLATE_STATE","TRAVEL_DIRECTION", "MANEUVER",
         "OCCUPANT_CNT", "FIRST_CONTACT_POINT"
