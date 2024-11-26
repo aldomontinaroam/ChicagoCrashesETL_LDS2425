@@ -164,7 +164,7 @@ schema_features = {
         "INJURIES_NO_INDICATION", "INJURIES_REPORTED_NOT_EVIDENT"
     ],
     "CauseDimension": [
-        "CuaseID",  "PRIM_CONTRIBUTORY_CAUSE",
+        "CauseID",  "PRIM_CONTRIBUTORY_CAUSE",
         "SEC_CONTRIBUTORY_CAUSE", "DRIVER_ACTION", "DRIVER_VISION"
     ]
 }
