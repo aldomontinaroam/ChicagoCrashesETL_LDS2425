@@ -1,125 +1,6 @@
 import csv
 from tqdm import tqdm
-
-
-def read_csv(file_path):
-    """
-    Reads a CSV file into a list of dictionaries.
-    """
-    with open(file_path, mode='r', encoding='utf-8') as file:
-        reader = csv.DictReader(file)
-        rows = [row for row in reader]
-        return reader.fieldnames, rows
-
-
-def merge_files(crashes_file, people_file, vehicle_file, primary_key, person_key):
-    """
-    Merges Crashes, People, and Vehicle datasets based on RD_NO and PERSON_ID logic.
-
-    Parameters:
-    - crashes_file: str - Path to the Crashes file.
-    - people_file: str - Path to the People file.
-    - vehicle_file: str - Path to the Vehicle file.
-    - primary_key: str - The primary key for merging (e.g., 'RD_NO').
-    - person_key: str - The column to preprocess in People (e.g., 'PERSON_ID').
-
-    Returns:
-    - tuple: (list of merged columns, list of merged rows as dictionaries)
-    """
-    # Read Crashes data
-    crashes_columns, crashes_rows = read_csv(crashes_file)
-
-    # Read People data and preprocess PERSON_ID
-    people_columns, people_rows = read_csv(people_file)
-    for row in people_rows:
-        if person_key in row and row[person_key]:
-            if row[person_key][0] == "O":  # Remove the first character if it starts with "O"
-                row["TEMP_PERSON_ID"] = row[person_key][1:]
-
-
-    # Read Vehicle data without modifying CRASH_UNIT_ID
-    vehicle_columns, vehicle_rows = read_csv(vehicle_file)
-
-    # Merge Crashes and People on RD_NO
-    print("Merging Crashes and People...")
-    crashes_lookup = {row[primary_key]: row for row in crashes_rows}
-    merged_crashes_people = []
-    for person_row in tqdm(people_rows, desc="Merging Crashes-People", unit="row"):
-        rd_no = person_row.get(primary_key, "")
-        crash_row = crashes_lookup.get(rd_no, {})
-        merged_row = crash_row.copy()
-        merged_row.update(person_row)
-        merged_crashes_people.append(merged_row)
-
-    # Merge Crashes-People with Vehicle on TEMP_PERSON_ID and RD_NO, or VEHICLE_ID if "P"
-    print("Merging Crashes-People with Vehicle...")
-    vehicle_lookup = {(row["CRASH_UNIT_ID"], row[primary_key]): row for row in vehicle_rows}
-    vehicle_lookup_by_id = {(row["VEHICLE_ID"], row[primary_key]): row for row in vehicle_rows}
-
-    final_merged_rows = []
-    for merged_row in tqdm(merged_crashes_people, desc="Merging Final Dataset", unit="row"):
-        temp_person_id = merged_row.get("TEMP_PERSON_ID", "")
-        rd_no = merged_row.get(primary_key, "")
-        vehicle_row = {}
-
-        # Merge based on TEMP_PERSON_ID if "O" or VEHICLE_ID if "P"
-        if temp_person_id != "":
-            vehicle_row = vehicle_lookup.get((temp_person_id, rd_no), {})
-        elif merged_row.get("VEHICLE_ID", "") != "":
-            vehicle_row = vehicle_lookup_by_id.get((merged_row["VEHICLE_ID"], rd_no), {})
-
-
-        final_row = merged_row.copy()
-        final_row.update(vehicle_row)
-        final_merged_rows.append(final_row)
-
-    # Determine final columns (excluding TEMP_PERSON_ID)
-    final_columns = sorted(set(crashes_columns + people_columns + vehicle_columns))
-    final_columns.remove("TEMP_PERSON_ID") if "TEMP_PERSON_ID" in final_columns else None
-    return final_columns, final_merged_rows
-
-
-
-def split_into_tables(columns, rows, schema_features):
-    """
-    Splits the merged dataset into tables based on schema_features.
-
-    Parameters:
-    - columns: list - List of all column names in the merged dataset.
-    - rows: list - List of merged rows as dictionaries.
-    - schema_features: dict - A dictionary mapping table names to their required columns.
-
-    Returns:
-    - dict: A dictionary with table names as keys and lists of rows as values.
-    """
-    tables = {}
-    for table_name, features in tqdm(schema_features.items(), desc="Splitting tables", unit="table"):
-        # Keep only rows with columns relevant to this table
-        filtered_rows = []
-        for row in rows:
-            filtered_row = {feature: row.get(feature, None) for feature in features if feature in columns}
-            # Include only non-empty rows
-            if any(filtered_row.values()):  # Check if any value is not None (indicating it is not empty)
-                filtered_rows.append(filtered_row)
-        tables[table_name] = (features, filtered_rows)
-    return tables
-
-
-def write_csv(file_path, columns, rows):
-    """
-    Writes a list of rows to a CSV file.
-
-    Parameters:
-    - file_path: str - The output file path.
-    - columns: list - List of column names.
-    - rows: list - List of rows as dictionaries.
-    """
-    with open(file_path, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=columns)
-        writer.writeheader()
-        for row in tqdm(rows, desc=f"Writing {file_path}", unit="row"):
-            writer.writerow(row)
-
+from collections import defaultdict
 
 # Define schema_features as a dictionary
 schema_features = {
@@ -131,7 +12,7 @@ schema_features = {
         "CRASH_DAY_OF_WEEK", "CRASH_HOUR", "MINUTE"
     ],
     "PersonDimension": [
-        "PERSON_ID", "CITY", "STATE", "SEX", "AGE", "PERSON_TYPE","UNIT_NO", "UNIT_TYPE",
+        "PERSON_ID", "CITY", "STATE", "SEX", "AGE", "PERSON_TYPE", "UNIT_NO", "UNIT_TYPE",
         "DAMAGE_CATEGORY", "PHYSICAL_CONDITION", "INJURY_CLASSIFICATION",
         "BAC_RESULT", "EJECTION"
     ],
@@ -152,7 +33,6 @@ schema_features = {
         "ROADWAY_SURFACE_COND", "ROAD_DEFECT", "POSTED_SPEED_LIMIT",
         "DEVICE_CONDITION", "ALIGNMENT"
     ],
-   
     "WeatherDimension": [
         "WEATHER_CONDITION", "LIGHTING_CONDITION"
     ],
@@ -168,20 +48,150 @@ schema_features = {
     ]
 }
 
+def read_csv(file_path):
+    """
+    Reads a CSV file into a list of dictionaries.
+    """
+    with open(file_path, mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        rows = [row for row in reader]
+        return reader.fieldnames, rows
+
+def remove_duplicates(rows, key=None):
+    """
+    Removes duplicate rows based on the given key (e.g., RD_NO or temporary ID).
+    
+    Parameters:
+    - rows: list - List of rows to be processed.
+    - key: str or None - The key column to identify duplicates. If None, compares entire rows.
+    
+    Returns:
+    - list: Filtered list of rows with duplicates removed.
+    """
+    seen = set()
+    unique_rows = []
+
+    if key:  # If a key is provided (for tables with a unique identifier)
+        for row in tqdm(rows, desc="Removing duplicates based on key", unit="row"):
+            key_value = row[key]  # Get the value of the key column
+            if key_value not in seen:
+                seen.add(key_value)
+                unique_rows.append(row)
+    else:  # If no key is provided, check for identical rows
+        for row in tqdm(rows, desc="Removing duplicates based on entire rows", unit="row"):
+            row_tuple = frozenset(row.items())  # Using frozenset instead of tuple for faster membership testing
+            if row_tuple not in seen:
+                seen.add(row_tuple)
+                unique_rows.append(row)
+
+    return unique_rows
+
+def index_data(dataset, name, key):
+    output = defaultdict(list)
+    for row in tqdm(dataset, desc=f"Indexing {name}", unit="row"):
+        output[row[key]].append(row)
+    return output
+
+def merge_data(crashes, people, vehicles, people_dict, vehicles_dict):
+    """
+    Merges the crashes, people, and vehicles data based on common keys (e.g., RD_NO, PERSON_ID, CRASH_UNIT_ID).
+    
+    Returns:
+    - merged_data: list of dictionaries representing merged data.
+    """
+    merged_data = []
+    
+    # Iterate over crashes and use RD_NO to fetch the matching people and vehicles
+    for crash in tqdm(crashes, desc="Merging crashes", unit="crash"):
+        crash_id = crash["RD_NO"]
+        
+        # Retrieve matching people and vehicles from the dictionaries
+        person_data = people_dict.get(crash_id, [])
+        vehicle_data = vehicles_dict.get(crash_id, [])
+        
+        # Merge all combinations of crash, person, and vehicle data
+        for person in person_data:
+            for vehicle in vehicle_data:
+                merged_row = crash.copy()  # Make a copy of the crash to avoid mutating it
+                merged_row.update(person)  # Merge person data
+                merged_row.update(vehicle)  # Merge vehicle data
+                merged_data.append(merged_row)
+    
+    print("Full data size:", len(merged_data))
+    
+    return merged_data
+
+
+
+
+def split_into_tables(merged_data, schema_features):
+    """
+    Splits the merged data into separate tables based on the schema features.
+    
+    Parameters:
+    - merged_data: list - List of dictionaries representing the merged data.
+    - schema_features: dict - The schema features for each table.
+    
+    Returns:
+    - tables: dict - A dictionary where keys are table names and values are lists of rows.
+    """
+    tables = {table_name: [] for table_name in schema_features}
+    
+    for row in merged_data:
+        for table_name, columns in schema_features.items():
+            table_row = {col: row.get(col, None) for col in columns}
+            tables[table_name].append(table_row)
+    
+    return tables
+
+
+def write_csv(file_path, columns, rows):
+    """
+    Writes a list of rows to a CSV file.
+
+    Parameters:
+    - file_path: str - The output file path.
+    - columns: list - List of column names.
+    - rows: list - List of rows as dictionaries.
+    """
+    with open(file_path, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=columns)
+        writer.writeheader()
+        for row in tqdm(rows, desc=f"Writing {file_path}", unit="row"):
+            writer.writerow(row)
+
+
 if __name__ == "__main__":
     # Input files
     crashes_file = "CRASHES[updated].csv"
     people_file = "PEOPLE[updated].csv"
     vehicle_file = "VEHICLES[updated].csv"
 
-    # Merge the files
-    print("Merging datasets...")
-    columns, rows = merge_files(crashes_file, people_file, vehicle_file, "RD_NO", "PERSON_ID")
-
-    # Split into tables
-    tables = split_into_tables(columns, rows, schema_features)
-
-    # Write each table to its own CSV file
-    for table_name, (features, rows) in tqdm(tables.items(), desc="Saving tables", unit="table"):
-        output_file = f"{table_name}.csv"
-        write_csv(output_file, features, rows)
+    # Read data
+    _, crashes = read_csv(crashes_file)
+    _, people = read_csv(people_file)
+    _, vehicles = read_csv(vehicle_file)
+    
+    # Index data
+    people_dict = index_data(people, "People", "RD_NO")
+    vehicles_dict = index_data(vehicles, "Vehicles", "RD_NO")
+    
+    # Merge the data
+    merged_data = merge_data(crashes, people, vehicles, people_dict, vehicles_dict)
+    
+    # Split the merged data into schema-based tables
+    tables = split_into_tables(merged_data, schema_features)
+    
+    # Remove duplicates for each table based on relevant keys
+    for table_name, rows in tables.items():
+        if table_name in ["PersonDimension", "VehicleDimension", "CrashReportDimension"]:
+            # These tables have unique identifiers
+            key_column = schema_features[table_name][0]
+            tables[table_name] = remove_duplicates(rows, key_column)
+        else:
+            # For tables without unique identifiers, remove exact duplicates
+            tables[table_name] = remove_duplicates(rows, key=None)
+    
+    # Write each table to a CSV file
+    for table_name, rows in tables.items():
+        write_csv(f"{table_name}.csv", schema_features[table_name], rows)
