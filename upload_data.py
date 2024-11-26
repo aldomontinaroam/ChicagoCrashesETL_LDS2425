@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 26 12:48:10 2024
-
 Upload data in the database
 """
 
 import pyodbc
 import csv
 import os
+import datetime
+from tqdm import tqdm
 
 # Database connection details
 server = 'lds.di.unipi.it'
@@ -16,183 +16,146 @@ username = 'Group_ID_8'
 password = 'MA6U07RA'
 connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
-try: 
-    # Establish connection
-    conn = pyodbc.connect(connection_string)
-    cursor = conn.cursor()
-    print("Connection is successful.")
-    
-    # Function to create tables
-    def create_tables():
-        tables = {
-            "DateDimension": """
-                CREATE TABLE IF NOT EXISTS DateDimension (
-                    DateID INT IDENTITY(1,1) PRIMARY KEY,
-                    CRASH_DATE DATE,
-                    YEAR INT,
-                    QUARTER INT,
-                    CRASH_MONTH INT,
-                    DAY INT,
-                    CRASH_DAY_OF_WEEK VARCHAR(20),
-                    CRASH_HOUR INT,
-                    MINUTE INT,
-                    SEC INT
-                )
-            """,
-            "PersonDimension": """
-                CREATE TABLE IF NOT EXISTS PersonDimension (
-                    PERSON_ID VARCHAR(50) PRIMARY KEY,
-                    CITY VARCHAR(100),
-                    STATE VARCHAR(50),
-                    SEX VARCHAR(10),
-                    AGE INT,
-                    PERSON_TYPE VARCHAR(50),
-                    BAC_RESULT VARCHAR(50),
-                    EJECTION VARCHAR(50),
-                    PHYSICAL_CONDITION VARCHAR(50),
-                    INJURY_CLASSIFICATION VARCHAR(50),
-                    DAMAGE_CATEGORY VARCHAR(50),
-                    UNIT_NO INT,
-                    UNIT_TYPE VARCHAR(50)
-                )
-            """,
-            "VehicleDimension": """
-                CREATE TABLE IF NOT EXISTS VehicleDimension (
-                    CRASH_UNIT_ID INT IDENTITY(1,1) PRIMARY KEY,
-                    TRAVEL_DIRECTION VARCHAR(50),
-                    MANEUVER VARCHAR(50),
-                    OCCUPANT_CNT INT,
-                    FIRST_CONTACT_POINT VARCHAR(50),
-                    SAFETY_EQUIPMENT VARCHAR(50),
-                    AIRBAG_DEPLOYED VARCHAR(50),
-                    VEHICLE_ID VARCHAR(50),
-                    MAKE VARCHAR(50),
-                    MODEL VARCHAR(50),
-                    VEHICLE_YEAR INT,
-                    VEHICLE_TYPE VARCHAR(50),
-                    VEHICLE_DEFECT VARCHAR(50),
-                    VEHICLE_USE VARCHAR(50),
-                    LIC_PLATE_STATE VARCHAR(50)
-                )
-            """,
-            "CrashReportDimension": """
-                CREATE TABLE IF NOT EXISTS CrashReportDimension (
-                    RD_NO INT PRIMARY KEY,
-                    REPORT_TYPE VARCHAR(50),
-                    DATE_POLICE_NOTIFIED DATETIME,
-                    BEAT_OF_OCCURRENCE VARCHAR(50),
-                    CRASH_TYPE VARCHAR(50),
-                    FIRST_CRASH_TYPE VARCHAR(50)
-                )
-            """,
-            "CauseDimension": """
-                CREATE TABLE IF NOT EXISTS CauseDimension (
-                    CauseID INT IDENTITY(1,1) PRIMARY KEY,
-                    PRIM_CONTRIBUTORY_CAUSE VARCHAR(100),
-                    SEC_CONTRIBUTORY_CAUSE VARCHAR(100),
-                    DRIVER_ACTION VARCHAR(100),
-                    DRIVER_VISION VARCHAR(100)
-                )
-            """,
-            "InjuryDimension": """
-                CREATE TABLE IF NOT EXISTS InjuryDimension (
-                    InjuryID INT IDENTITY(1,1) PRIMARY KEY,
-                    MOST_SEVERE_INJURY VARCHAR(50),
-                    INJURIES_TOTAL INT,
-                    INJURIES_FATAL INT,
-                    INJURIES_NON_INCAPACITATING INT,
-                    INJURIES_INCAPACITATING INT,
-                    INJURIES_UNKNOWN INT,
-                    INJURIES_NO_INDICATION INT,
-                    INJURIES_REPORTED_NOT_EVIDENT INT
-                )
-            """,
-            "LocationDimension": """
-                CREATE TABLE IF NOT EXISTS LocationDimension (
-                    LocationID INT IDENTITY(1,1) PRIMARY KEY,
-                    LOCATION VARCHAR(100),
-                    LATITUDE FLOAT,
-                    LONGITUDE FLOAT,
-                    STREET_NO INT,
-                    STREET_NAME VARCHAR(100),
-                    STREET_DIRECTION VARCHAR(50),
-                    H3 NVARCHAR(50),
-                    TRAFFIC_CONTROL_DEVICE VARCHAR(100),
-                    TRAFFICWAY_TYPE VARCHAR(100),
-                    ROADWAY_SURFACE_COND VARCHAR(100),
-                    ROAD_DEFECT VARCHAR(100),
-                    POSTED_SPEED_LIMIT INT,
-                    DEVICE_CONDITION VARCHAR(50),
-                    ALIGNMENT VARCHAR(50)
-                )
-            """,
-            "WeatherDimension": """
-                CREATE TABLE IF NOT EXISTS WeatherDimension (
-                    WeatherID INT IDENTITY(1,1) PRIMARY KEY,
-                    WEATHER_CONDITION VARCHAR(50),
-                    LIGHTING_CONDITION VARCHAR(50)
-                )
-            """,
-            "DamageToUser": """
-                CREATE TABLE IF NOT EXISTS DamageToUser (
-                    DTUID INT IDENTITY(1,1) PRIMARY KEY,
-                    DateID INT NOT NULL FOREIGN KEY REFERENCES DateDimension(DateID),
-                    PERSON_ID VARCHAR(50) NOT NULL FOREIGN KEY REFERENCES PersonDimension(PERSON_ID),
-                    LocationID INT NOT NULL FOREIGN KEY REFERENCES LocationDimension(LocationID),
-                    WeatherID INT NOT NULL FOREIGN KEY REFERENCES WeatherDimension(WeatherID),
-                    InjuryID INT NOT NULL FOREIGN KEY REFERENCES InjuryDimension(InjuryID),
-                    CauseID INT NOT NULL FOREIGN KEY REFERENCES CauseDimension(CauseID),
-                    CRASH_UNIT_ID INT NOT NULL FOREIGN KEY REFERENCES VehicleDimension(CRASH_UNIT_ID),
-                    RD_NO INT NOT NULL FOREIGN KEY REFERENCES CrashReportDimension(RD_NO),
-                    DAMAGE FLOAT,
-                    NUM_UNITS INT
-                )
-            """
-        }
-    
-        for table_name, table_sql in tables.items():
-            cursor.execute(table_sql)
-            conn.commit()
-            print(f"Table {table_name} created or already exists.")
-    
-    # Function to load CSV data into the table
-    def load_csv_to_table(csv_path, table_name, columns):
-        with open(csv_path, mode='r', newline='', encoding='utf-8') as file:
+# Primary keys and auto-generated fields for tables
+primary_keys = {
+    "PersonDimension": "PERSON_ID NVARCHAR(50) PRIMARY KEY",
+    "VehicleDimension": "CRASH_UNIT_ID INT PRIMARY KEY",
+    "CrashReportDimension": "RD_NO NVARCHAR(50) PRIMARY KEY"
+}
+
+auto_generated_fields = {
+    "DateDimension": "[DateID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+    "CauseDimension": "[CauseID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+    "InjuryDimension": "[InjuryID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+    "LocationDimension": "[LocationID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+    "WeatherDimension": "[WeatherID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+}
+
+fact_table_fields = {
+    "DamageToUser": """
+        [DTUID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        [DateID] INT NOT NULL FOREIGN KEY REFERENCES DateDimension(DateID),
+        [PERSON_ID] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES PersonDimension(PERSON_ID),
+        [LocationID] INT NOT NULL FOREIGN KEY REFERENCES LocationDimension(LocationID),
+        [WeatherID] INT NOT NULL FOREIGN KEY REFERENCES WeatherDimension(WeatherID),
+        [InjuryID] INT NOT NULL FOREIGN KEY REFERENCES InjuryDimension(InjuryID),
+        [CauseID] INT NOT NULL FOREIGN KEY REFERENCES CauseDimension(CauseID),
+        [CRASH_UNIT_ID] INT NOT NULL FOREIGN KEY REFERENCES VehicleDimension(CRASH_UNIT_ID),
+        [RD_NO] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES CrashReportDimension(RD_NO)
+    """
+}
+
+
+csv_files = {
+    'DateDimension.csv': 'DateDimension',
+    'PersonDimension.csv': 'PersonDimension',
+    'VehicleDimension.csv': 'VehicleDimension',
+    'CrashReportDimension.csv': 'CrashReportDimension',
+    'CauseDimension.csv': 'CauseDimension',
+    'InjuryDimension.csv': 'InjuryDimension',
+    'LocationDimension.csv': 'LocationDimension',
+    'WeatherDimension.csv': 'WeatherDimension',
+    'DamageToUser.csv': 'DamageToUser'
+}
+
+def infer_type(value):
+    """Infer SQL type based on the value."""
+    if value.isdigit():
+        return "INT"
+    try:
+        float(value)
+        return "FLOAT"
+    except ValueError:
+        pass
+    try:
+        datetime.datetime.strptime(value, "%m/%d/%Y %H:%M")
+        return "DATETIME"
+    except ValueError:
+        pass
+    return "NVARCHAR(50)"
+
+# FUNCTION: infer table schema from csv by checking primary keys and foreign keys presence based on dicts above
+def infer_table_schema(csv_file, table_name):
+    """Infer table schema from CSV file."""
+    with open(csv_file, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        headers = next(reader)
+        sample_row = next(reader)
+        schema = []
+
+        for header, value in zip(headers, sample_row):
+            sql_type = infer_type(value)
+            schema.append(f"[{header}] {sql_type}")
+        
+        # Add primary key if specified
+        if table_name in primary_keys:
+            pk_column = primary_keys[table_name].split()[0].strip()
+            schema = [
+                f"{col} PRIMARY KEY" if pk_column in col else col
+                for col in schema
+            ]
+
+        return ", ".join(schema)
+
+# FUNCTION: create table based on schema and correct types assigning correctly pk and fk constraints
+def create_table(connection, table_name, schema):
+    """Create a table based on the given schema."""
+    try:
+        cursor = connection.cursor()
+        if table_name in auto_generated_fields:
+            schema = auto_generated_fields[table_name] + ", " + schema
+        create_statement = f"CREATE TABLE {table_name} ({schema});"
+        cursor.execute(create_statement)
+        connection.commit()
+        print(f"Table {table_name} created successfully.")
+    except Exception as e:
+        print(f"Error creating table {table_name}: {e}")
+
+# FUNCTION: load data into the tables from the csv files
+def load_data_into_table(connection, table_name, csv_file):
+    """Load data from a CSV file into the specified table."""
+    try:
+        with open(csv_file, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            headers = next(reader)  # Skip header row
-            for row in reader:
-                values = [row[headers.index(col)] if col in headers else None for col in columns]
-                placeholders = ", ".join("?" for _ in values)
-                cursor.execute(f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({placeholders})", values)
-            conn.commit()
-            print(f"Data from {csv_path} inserted into {table_name}.")
-    
-    # List of CSV files and corresponding table names
-    csv_files = {
-        'DateDimension.csv': 'DateDimension',
-        'PersonDimension.csv': 'PersonDimension',
-        'VehicleDimension.csv': 'VehicleDimension',
-        'CrashReportDimension.csv': 'CrashReportDimension',
-        'CauseDimension.csv': 'CauseDimension',
-        'InjuryDimension.csv': 'InjuryDimension',
-        'LocationDimension.csv': 'LocationDimension',
-        'WeatherDimension.csv': 'WeatherDimension',
-        'DamageToUser.csv': 'DamageToUser'
-    }
-    
-    # Create tables
-    create_tables()
-    
-    # Load data from CSV files to their respective tables
-    for csv_file, table_name in csv_files.items():
-        if os.path.exists(csv_file):
-            load_csv_to_table(csv_file, table_name)
-        else:
-            print(f"File {csv_file} does not exist.")
-    
-    
-    # Close connection
-    cursor.close()
-    conn.close()
-except Exception as e:
-    print(e)
+            headers = next(reader)
+            rows = [tuple(row) for row in reader]
+
+        placeholders = ", ".join("?" for _ in headers)
+        insert_query = f"INSERT INTO {table_name} ({', '.join(headers)}) VALUES ({placeholders});"
+
+        cursor = connection.cursor()
+        for row in tqdm(rows, desc=f"Loading data into {table_name}"):
+            cursor.execute(insert_query, row)
+        connection.commit()
+        print(f"Data loaded into {table_name} successfully.")
+    except Exception as e:
+        print(f"Error loading data into {table_name}: {e}")
+
+# MAIN
+if __name__ == "__main__":
+    try:
+        # Connect to the database
+        connection = pyodbc.connect(connection_string)
+        print("Connected to the database successfully.")
+
+        # Create dimension tables
+        for csv_file, table_name in csv_files.items():
+            if table_name != "DamageToUser":  # Skip fact table here
+                schema = infer_table_schema(csv_file, table_name)
+                create_table(connection, table_name, schema)
+
+        # Create fact table
+        fact_table_name = "DamageToUser"
+        fact_table_schema = fact_table_fields[fact_table_name]
+        create_table(connection, fact_table_name, fact_table_schema)
+
+        # Populate tables with data
+        for csv_file, table_name in csv_files.items():
+            load_data_into_table(connection, table_name, csv_file)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if 'connection' in locals():
+            connection.close()
+            print("Database connection closed.")
