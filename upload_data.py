@@ -112,22 +112,39 @@ def create_table(connection, table_name, schema):
         print(f"Error creating table {table_name}: {e}")
 
 # FUNCTION: load data into the tables from the csv files
-def load_data_into_table(connection, table_name, csv_file):
-    """Load data from a CSV file into the specified table."""
+def load_data_into_table(connection, table_name, csv_file, batch_size=1000):
+    """
+    Load data from a CSV file into the specified table using batch inserts for high efficiency.
+    
+    Args:
+        connection: pyodbc connection object.
+        table_name: Name of the database table.
+        csv_file: Path to the CSV file.
+        batch_size: Number of rows to insert in each batch.
+    """
     try:
         with open(csv_file, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            headers = next(reader)
-            rows = [tuple(row) for row in reader]
-
-        placeholders = ", ".join("?" for _ in headers)
-        insert_query = f"INSERT INTO {table_name} ({', '.join(headers)}) VALUES ({placeholders});"
-
-        cursor = connection.cursor()
-        for row in tqdm(rows, desc=f"Loading data into {table_name}"):
-            cursor.execute(insert_query, row)
-        connection.commit()
-        print(f"Data loaded into {table_name} successfully.")
+            headers = next(reader)  # Read the header row
+            placeholders = ", ".join("?" for _ in headers)
+            insert_query = f"INSERT INTO {table_name} ({', '.join(headers)}) VALUES ({placeholders});"
+            
+            cursor = connection.cursor()
+            cursor.fast_executemany = True  # Enable fast inserts
+            
+            batch = []
+            for row in tqdm(reader, desc=f"Loading data into {table_name}"):
+                batch.append(tuple(row))
+                if len(batch) >= batch_size:
+                    cursor.executemany(insert_query, batch)
+                    batch = []  # Clear the batch
+            
+            # Insert any remaining rows
+            if batch:
+                cursor.executemany(insert_query, batch)
+            
+            connection.commit()
+            print(f"Data loaded into {table_name} successfully.")
     except Exception as e:
         print(f"Error loading data into {table_name}: {e}")
 
