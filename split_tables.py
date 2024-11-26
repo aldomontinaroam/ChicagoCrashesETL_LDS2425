@@ -94,42 +94,36 @@ def write_csv(file_path, columns, rows):
 # Define schema_features as a dictionary
 schema_features = {
     "DamageToUser": [
-        "DamageToUserKey", "DateID", "PERSON_ID", "LocationID", "WeatherID",
-        "CRASH_UNIT_ID", "RD_NO", "DAMAGE", "UNIT_NO", "UNIT_TYPE",
-        "DAMAGE_CATEGORY", "PHYSICAL_CONDITION", "INJURY_CLASSIFICATION",
-        "BAC_RESULT", "EJECTION"
+        "DTUID", "DateID", "PERSON_ID", "LocationID", "WeatherID", "InjuryID",
+        "CauseID", "CRASH_UNIT_ID", "RD_NO", "DAMAGE", "NUM_UNITS"
     ],
     "DateDimension": [
         "DateID", "CRASH_DATE", "YEAR", "QUARTER", "CRASH_MONTH", "DAY",
         "CRASH_DAY_OF_WEEK", "CRASH_HOUR", "MINUTE", "SEC"
     ],
     "PersonDimension": [
-        "PERSON_ID", "CITY", "STATE", "SEX", "AGE", "PERSON_TYPE"
+        "PERSON_ID", "CITY", "STATE", "SEX", "AGE", "PERSON_TYPE","UNIT_NO", "UNIT_TYPE",
+        "DAMAGE_CATEGORY", "PHYSICAL_CONDITION", "INJURY_CLASSIFICATION",
+        "BAC_RESULT", "EJECTION"
     ],
     "VehicleDimension": [
         "VEHICLE_ID", "MAKE", "MODEL", "VEHICLE_YEAR", "VEHICLE_TYPE",
-        "VEHICLE_DEFECT", "VEHICLE_USE", "DRIVER_ACTION", "DRIVER_VISION",
-        "SAFETY_EQUIPMENT", "AIRBAG_DEPLOYED", "LIC_PLATE_STATE"
-    ],
-    "CrashVehicleDimension": [
-        "CRASH_UNIT_ID", "VEHICLE_ID", "TRAVEL_DIRECTION", "MANEUVER",
+        "VEHICLE_DEFECT", "VEHICLE_USE", "SAFETY_EQUIPMENT", "AIRBAG_DEPLOYED", 
+        "LIC_PLATE_STATE","TRAVEL_DIRECTION", "MANEUVER",
         "OCCUPANT_CNT", "FIRST_CONTACT_POINT"
     ],
     "CrashReportDimension": [
-        "RD_NO", "InjuryID", "NUM_UNITS", "REPORT_TYPE",
-        "DATE_POLICE_NOTIFIED", "PRIM_CONTRIBUTORY_CAUSE",
-        "SEC_CONTRIBUTORY_CAUSE", "BEAT_OF_OCCURRENCE",
-        "CRASH_TYPE", "FIRST_CRASH_TYPE"
+        "RD_NO", "REPORT_TYPE","DATE_POLICE_NOTIFIED",
+        "BEAT_OF_OCCURRENCE", "CRASH_TYPE", "FIRST_CRASH_TYPE"
     ],
     "LocationDimension": [
-        "LocationID", "RoadID", "LOCATION", "LATITUDE", "LONGITUDE",
-        "STREET_NO", "STREET_NAME", "STREET_DIRECTION", "H3"
-    ],
-    "RoadDimension": [
-        "RoadID", "TRAFFIC_CONTROL_DEVICE", "TRAFFICWAY_TYPE",
+        "LocationID", "LOCATION", "LATITUDE", "LONGITUDE",
+        "STREET_NO", "STREET_NAME", "STREET_DIRECTION", "H3", 
+        "TRAFFIC_CONTROL_DEVICE", "TRAFFICWAY_TYPE",
         "ROADWAY_SURFACE_COND", "ROAD_DEFECT", "POSTED_SPEED_LIMIT",
         "DEVICE_CONDITION", "ALIGNMENT"
     ],
+   
     "WeatherDimension": [
         "WeatherID", "WEATHER_CONDITION", "LIGHTING_CONDITION"
     ],
@@ -138,7 +132,14 @@ schema_features = {
         "INJURIES_FATAL", "INJURIES_NON_INCAPACITATING",
         "INJURIES_INCAPACITATING", "INJURIES_UNKNOWN",
         "INJURIES_NO_INDICATION", "INJURIES_REPORTED_NOT_EVIDENT"
-    ]
+    ],
+    "CauseDimension": [
+        "CuaseID",  "PRIM_CONTRIBUTORY_CAUSE",
+        "SEC_CONTRIBUTORY_CAUSE", "DRIVER_ACTION", "DRIVER_VISION"
+    ],
+
+
+    
 }
 
 if __name__ == "__main__":
