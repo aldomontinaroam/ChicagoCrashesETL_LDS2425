@@ -136,7 +136,7 @@ schema_features = {
     "CauseDimension": [
         "CuaseID",  "PRIM_CONTRIBUTORY_CAUSE",
         "SEC_CONTRIBUTORY_CAUSE", "DRIVER_ACTION", "DRIVER_VISION"
-    ],
+    ]
 
 
     
