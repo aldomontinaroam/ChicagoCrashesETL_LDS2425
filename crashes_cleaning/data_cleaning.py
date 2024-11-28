@@ -66,24 +66,26 @@ class DataProcessor:
 
     def process_dates(self, data):
         """
-        Process dates in the 'CRASH_DATE' column and add 'YEAR' and 'QUARTER' fields.
+        Process dates in the 'CRASH_DATE' column and add 'YEAR', 'QUARTER', 'HOUR', and 'MINUTE' fields.
         """
         for row in tqdm(data, desc="Processing dates"):
             raw_date = row.get('CRASH_DATE')  # Retrieve the raw date string
-
+    
             if raw_date:  # Proceed only if CRASH_DATE exists
                 for fmt in self.date_formats:
                     try:
                         # Attempt to parse the date
                         date_obj = datetime.strptime(raw_date, fmt)
-
+    
                         # Update CRASH_DATE to a datetime object
                         row['CRASH_DATE'] = date_obj
-
-                        # Add extracted fields for year and quarter
+    
+                        # Add extracted fields for year, quarter, hour, and minute
                         row['YEAR'] = date_obj.year
+                        row['DAY'] = date_obj.day
                         row['QUARTER'] = (date_obj.month - 1) // 3 + 1
-
+                        row['MINUTE'] = date_obj.minute
+    
                         break  # Stop trying formats once successfully parsed
                     except ValueError:
                         continue  # Try the next format
@@ -92,8 +94,11 @@ class DataProcessor:
                     print(f"Unrecognized date format: {raw_date}")
                     row['CRASH_DATE'] = None
                     row['YEAR'] = None
+                    row['DAY'] = None
                     row['QUARTER'] = None
+                    row['MINUTE'] = None
         print("Date processing complete.")
+
     
     @staticmethod
     def correct_num_units(data_crashes, data_vehicles):
@@ -157,13 +162,26 @@ class DataGeocoder:
         return None, None, None
 
     def reverse_geocode(self, lat, lon):
-        geocoders = [self.nominatim, self.opencage_first, self.opencage_second, self.photon]
+        geocoders = [self.nominatim, self.photon, self.opencage_first, self.opencage_second]
         for geocoder in geocoders:
             try:
                 location = geocoder.reverse((float(lat), float(lon)), timeout=10)
-                print(location.raw)  # Debugging: Check the actual response format
-                return location.raw.get('address', {}).get('road', None)
+                print(location.raw)
+                properties = location.raw.get('properties')
+                street_name = properties.get('street')  # Primary field for street name
+    
+                # Fallbacks if street name is unavailable
+                if not street_name:
+                    street_name = properties.get('locality')
+                
+                return street_name  # Return the best available name
             except GeocoderTimedOut:
+                continue
+            except GeocoderInsufficientPrivileges:
+                sleep(5)
+                continue
+            except Exception as e:
+                print(f"Error during reverse geocoding: {e}")
                 continue
         return None
 
