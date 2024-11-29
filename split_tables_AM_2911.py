@@ -40,7 +40,7 @@ def read_csv(file_path):
         rows = [row for row in reader]
         return reader.fieldnames, rows
 
-def remove_identical_rows(dataset):
+def remove_identical_rows_vehicleDim(dataset):
     """
     Removes perfectly identical rows from a list of dictionaries based on VEHICLE_ID and CRASH_UNIT_ID.
     """
@@ -53,6 +53,20 @@ def remove_identical_rows(dataset):
             seen.add(unique_key)
             result.append(row)
     return result
+
+def remove_identical_rows(dataset):
+    """
+    Removes perfectly identical rows from a list of dictionaries.
+    """
+    seen = set()
+    result = []
+    for row in tqdm(dataset, desc="Removing duplicates", unit="row"):
+        row_tuple = frozenset(row.items())  # Frozenset for hashing
+        if row_tuple not in seen:
+            seen.add(row_tuple)
+            result.append(row)
+    return result
+
 
 def clean_vehicle_id(vehicle_id):
     """
@@ -327,6 +341,8 @@ if __name__ == "__main__":
         for table_name, rows in tables.items():
             if table_name != "DamageToUser" and table_name != "VehicleDimension":
                 tables[table_name] = remove_identical_rows(rows)
+        
+        tables["VehicleDimension"] = remove_identical_rows_vehicleDim(tables["VehicleDimension"])
 
         # Build VehicleDimension directly from vehicles data
         vehicle_dimension = []
