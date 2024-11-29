@@ -107,9 +107,9 @@ def merge_data(crash_dict, vehicle_dict_crash_unit, vehicle_dict_vehicle_id, veh
             raise ValueError(f"Crash data for rd_no {rd_no} is missing. Stopping execution.")
 
         # Get vehicle data
-        vehicle = vehicle_dict_crash_unit.get((vehicle_id, rd_no), 0)
+        vehicle = vehicle_dict_crash_unit.get((person_id, rd_no), 0)
         if vehicle== 0:
-            vehicle = vehicle_dict_vehicle_id.get((person_id,rd_no), 0)
+            vehicle = vehicle_dict_vehicle_id.get((vehicle_id,rd_no), 0)
             if vehicle == 0:
                 vehicle = vehicle_dict_rd_no.get((rd_no,), 0)
             else:
