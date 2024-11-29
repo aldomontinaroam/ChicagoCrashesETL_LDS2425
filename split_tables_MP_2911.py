@@ -177,7 +177,7 @@ if __name__ == "__main__":
 
     # Index data
     crash_dict = index_data(crashes, "Crashes", ["RD_NO"])
-    vehicle_dict_crash_unit = index_data(vehicles, "Vehicles", ["CRASH_UNIT_ID", "RD_NO"])
+    vehicle_dict_crash_unit = index_data(vehicles, "Vehicles", ["CRASH_UNIT_ID"])
     vehicle_dict_vehicle_id = index_data(vehicles, "Vehicles", ["VEHICLE_ID"])
     vehicle_dict_rd_no = index_data(vehicles, "Vehicles", ["RD_NO"])
 
