@@ -177,6 +177,14 @@ def populate_fact_table(fact_table, merged_data, mappings, schema_features):
 
     return fact_table
 
+def check_unique_ids(data_list):
+    for i, data in enumerate(data_list):
+        first_key = list(data[0].keys())[0]  # Get the first key from the first dictionary
+        ids = [entry[first_key] for entry in data]
+        if len(ids) == len(set(ids)):
+            print(f"Dataset {i} ({first_key}): All values are unique.")
+        else:
+            print(f"Dataset {i} ({first_key}): Contains duplicates.")
 
 def write_csv(file_path, columns, rows):
     """
@@ -192,7 +200,7 @@ def write_csv(file_path, columns, rows):
         writer.writeheader()
         for row in tqdm(rows, desc=f"Writing {file_path}", unit="row"):
             writer.writerow(row)
-
+            
 if __name__ == "__main__":
     crashes_file = "CRASHES[updated].csv"
     people_file = "People[update].csv"
@@ -217,6 +225,11 @@ if __name__ == "__main__":
 
         # Split the merged data into schema-based tables (excluding DamageToUser)
         tables, mappings = split_into_tables(merged_data, schema_features)
+
+        # Check for unique IDs in each table (except for DamageToUser)
+        for table_name, rows in tables.items():
+            if table_name != "DamageToUser":
+                check_unique_ids([rows])
 
         # Initialize fact table and populate it
         fact_table = []
