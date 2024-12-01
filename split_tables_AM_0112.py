@@ -34,8 +34,42 @@ def read_csv(file_path):
     # Reads a CSV file into a list of dictionaries.
     with open(file_path, mode='r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
-        rows = [row for row in reader]
-        return reader.fieldnames, rows
+        fieldnames = reader.fieldnames
+        rows = []
+        for row in reader:
+            standardized_row = {key: value for key, value in row.items()}
+            rows.append(standardized_row)
+        return fieldnames, rows
+
+def normalize_ids(data, id_fields):
+    for row in data:
+        for id_field in id_fields:
+            id_value = row.get(id_field, '')
+            if id_value:
+                try:
+                    # Convert to integer and back to string to remove any decimal point artifacts
+                    id_int = int(float(id_value))
+                    row[id_field] = str(id_int)
+                except ValueError:
+                    pass  # If it can't be converted, leave it as is
+    return data
+
+def clean_ids(data, id_fields):
+    for row in data:
+        for id_field in id_fields:
+            id_value = row.get(id_field, '')
+            if id_value:
+                # Strip whitespace and convert to uppercase
+                row[id_field] = id_value.strip().upper()
+    return data
+
+def uppercase_ids(data, id_fields):
+    for row in data:
+        for id_field in id_fields:
+            id_value = row.get(id_field, '')
+            if id_value:
+                row[id_field] = id_value.upper()
+    return data
 
 def remove_identical_rows(dataset):
     seen, result  = set(), [] # To track unique rows
@@ -54,52 +88,52 @@ def index_data(dataset, name, keys):
         output[key] = row
     return output
 
-def merge_data(crash_dict, vehicle_dict_crash_unit, vehicle_dict_vehicle_id, people):
+def merge_data(crash_dict, vehicle_dict_vehicle_id, vehicle_dict_invalid, people):
     merged_data = []
     for person in tqdm(people, desc="Merging data", unit="person"):
-        rd_no = person.get("RD_NO", '')
+        rd_no = person.get("RD_NO", '').strip().upper()
         person_id = person.get("PERSON_ID", '')
-        person_id = person_id[1:]  # Remove the 'P' prefix
-        vehicle_id = person.get("VEHICLE_ID", '')
+        crash_unit_id = person_id[1:]  # Assuming PERSON_ID starts with a letter
+        vehicle_id = person.get("VEHICLE_ID", '').strip()
 
         # Get crash data
         crash = crash_dict.get((rd_no,), {})
-        if crash == {}:
-            raise ValueError(f"Crash data for rd_no {rd_no} is missing. Stopping execution.")
+        if not crash:
+            print(f"Warning: Crash data for RD_NO {rd_no} is missing.")
+            continue  # Skip to the next person record
 
-        # Get vehicle data
-        vehicle = vehicle_dict_crash_unit.get((person_id, rd_no), {})
-        if not vehicle:
-            vehicle = vehicle_dict_vehicle_id.get((vehicle_id, rd_no), {})
-            if not vehicle:
-                print(f"Warning: Vehicle data for person_id {person_id} in the Report {rd_no} is missing. "
-                        f"Person_id: {person_id} will not have 'UNIT_NUM'")
-                # Merge data
-                merged_row = {}
-                merged_row.update(crash)
-                merged_row.update(person)
-                merged_data.append(merged_row)
-                continue
-        # Merge data
         merged_row = {}
         merged_row.update(crash)
         merged_row.update(person)
-        merged_row.update(vehicle)
+
+        if vehicle_id and vehicle_id != '-1':
+            # VEHICLE_ID is valid and not empty
+            vehicle_key = (vehicle_id, rd_no)
+            vehicle = vehicle_dict_vehicle_id.get(vehicle_key, {})
+            if vehicle:
+                merged_row.update(vehicle)
+            else:
+                print(f"Warning: Vehicle data for VEHICLE_ID {vehicle_id} in RD_NO {rd_no} is missing.")
+        else:
+            # VEHICLE_ID is empty or '-1', consider vehicle_dict_invalid
+            vehicle_key = (crash_unit_id, rd_no)
+            vehicle = vehicle_dict_invalid.get(vehicle_key, {})
+            if vehicle:
+                merged_row.update(vehicle)
+            else:
+                print(f"Warning: No vehicle data for CRASH_UNIT_ID {crash_unit_id} in RD_NO {rd_no}.")
+                # Optionally handle cases where both VEHICLE_ID and CRASH_UNIT_ID are missing
+
         merged_data.append(merged_row)
 
-    print("Numero totale di righe nel dataset unito:", len(merged_data))
+    print(f"Total rows in merged dataset: {len(merged_data)}")
     return merged_data
 
 def split_into_tables(merged_data, schema_features):
-    """
-    Splits the merged data into separate tables based on the schema features.
-    Returns tables and mappings.
-    """
-    tables = {table_name: [] for table_name in schema_features if table_name != "DamageToUser"}  # Skip fact table
-    id_counters = {table_name: 1 for table_name in schema_features if table_name != "DamageToUser"}  # Initialize counters
-    mappings = {table_name: {} for table_name in schema_features if table_name != "DamageToUser"}  # Dimension mappings
+    tables = {table_name: [] for table_name in schema_features if table_name != "DamageToUser"}
+    id_counters = {table_name: 1 for table_name in schema_features if table_name != "DamageToUser"}
+    mappings = {table_name: {} for table_name in schema_features if table_name != "DamageToUser"}
 
-    # Define ID columns explicitly
     dimension_id_columns = {
         "DateDimension": "DateID",
         "LocationDimension": "LocationID",
@@ -111,9 +145,22 @@ def split_into_tables(merged_data, schema_features):
     for row in merged_data:
         for table_name, columns in schema_features.items():
             if table_name == "DamageToUser":
-                continue  # Skip the fact table during splitting
+                continue
+
+            if table_name == "VehicleDimension":
+                if row.get("VEHICLE_ID", '') == '-1':
+                    # Include minimal vehicle data if available
+                    if "CRASH_UNIT_ID" in row:
+                        table_row = {col: row.get(col, None) for col in columns}
+                        tables[table_name].append(table_row)
+                    continue
+                else:
+                    table_row = {col: row.get(col, None) for col in columns}
+                    tables[table_name].append(table_row)
+                    continue
+
             table_row = {col: row.get(col, None) for col in columns}
-            
+
             # Generate unique IDs for dimension tables
             if table_name in dimension_id_columns:
                 id_column = dimension_id_columns[table_name]
@@ -128,10 +175,15 @@ def split_into_tables(merged_data, schema_features):
 
     return tables, mappings
 
+def remove_nan_vehicles(dataset):
+    result = []
+    for row in tqdm(dataset, desc="Processing rows", unit="row"):
+        if row['VEHICLE_ID'] != '-1' and row['VEHICLE_ID']:
+            result.append(row)
+    return result
+
+
 def populate_fact_table(fact_table, merged_data, mappings, schema_features):
-    """
-    Populates the fact table with IDs from the dimension mappings.
-    """
     dimension_id_columns = {
         "DateDimension": "DateID",
         "LocationDimension": "LocationID",
@@ -142,7 +194,7 @@ def populate_fact_table(fact_table, merged_data, mappings, schema_features):
 
     for row in merged_data:
         fact_row = {col: row.get(col, None) for col in schema_features["DamageToUser"]}
-        
+
         # Add dimension IDs to the fact table
         for dim_name, mapping in mappings.items():
             if dim_name in dimension_id_columns:
@@ -153,6 +205,13 @@ def populate_fact_table(fact_table, merged_data, mappings, schema_features):
                     fact_row[id_column] = mapping[key]
                 else:
                     print(f"Missing mapping for {key} in {dim_name}")
+
+        # Handle VehicleDimension ID
+        vehicle_id = row.get("VEHICLE_ID", None)
+        if vehicle_id and vehicle_id != '-1':
+            fact_row["VEHICLE_ID"] = vehicle_id
+        else:
+            fact_row["VEHICLE_ID"] = None
 
         fact_table.append(fact_row)
 
@@ -253,31 +312,52 @@ if __name__ == "__main__":
     crash_columns, crashes = read_csv("CRASHES[updated].csv")
     people_columns, people = read_csv("People[update].csv")
     vehicle_columns, vehicles = read_csv("VEHICLES[updated].csv")
-    
+
+    # Normalize IDs in the datasets
+    vehicles = normalize_ids(vehicles, ['VEHICLE_ID', 'CRASH_UNIT_ID', 'UNIT_NO', 'OCCUPANT_CNT'])
+    people = normalize_ids(people, ['VEHICLE_ID'])
+
+    # Clean and uppercase IDs
+    vehicles = clean_ids(vehicles, ['RD_NO', 'VEHICLE_ID', 'CRASH_UNIT_ID'])
+    people = clean_ids(people, ['RD_NO', 'VEHICLE_ID'])
+    crashes = clean_ids(crashes, ['RD_NO'])
+
+    # Verify normalization
+    print("Sample person data after normalization:", people[0])
+    print("Sample vehicle data after normalization:", vehicles[0])
+
     try:
-        # Index data
+        # Split vehicles into two datasets based on VEHICLE_ID
+        vehicles_valid = [row for row in vehicles if row.get("VEHICLE_ID", '') != '-1']
+        vehicles_invalid = [row for row in vehicles if row.get("VEHICLE_ID", '') == '-1']
+
+        # Index data with keys converted to uppercase
         crash_dict = index_data(crashes, "Crashes", ["RD_NO"])
-        vehicle_dict_crash_unit = index_data(vehicles, "Vehicles", ["CRASH_UNIT_ID", "RD_NO"])
-        vehicle_dict_vehicle_id = index_data(vehicles, "Vehicles", ["VEHICLE_ID", "RD_NO"])
-    
+        vehicle_dict_vehicle_id = index_data(vehicles_valid, "Valid Vehicles", ["VEHICLE_ID", "RD_NO"])
+        vehicle_dict_invalid = index_data(vehicles_invalid, "Invalid Vehicles", ["CRASH_UNIT_ID", "RD_NO"])
+
         # Merge the data
-        merged_data = merge_data(crash_dict, vehicle_dict_crash_unit, vehicle_dict_vehicle_id, people)
-    
+        merged_data = merge_data(crash_dict, vehicle_dict_vehicle_id, vehicle_dict_invalid, people)
+
+        # Proceed with the rest of your code...
         # Split the merged data into schema-based tables (excluding DamageToUser)
         tables, mappings = split_into_tables(merged_data, schema_features)
-        
+
         # Check for unique IDs in each table (except for DamageToUser)
         for table_name, rows in tables.items():
             if rows:
                 check_unique_ids([rows])
-            
+
         # Initialize and populate fact table
         fact_table = []
         fact_table = populate_fact_table(fact_table, merged_data, mappings, schema_features)
-        
+
         # Remove identical rows from each table except VehicleDimension
         for table_name, rows in tables.items():
             tables[table_name] = remove_identical_rows(rows)
+        
+        # Remove -1 vehicles from VehicleDimension
+        tables['VehicleDimension'] = remove_nan_vehicles(tables['VehicleDimension'])
         
         original_data = {
             "crashes": crashes,
@@ -285,18 +365,19 @@ if __name__ == "__main__":
             "vehicles": vehicles,
         }
         check_data_consistency(original_data, merged_data, tables, fact_table, schema_features)
-    
+
         # Write each table to a CSV file
         for table_name, rows in tables.items():
             write_csv(f"{table_name}.csv", schema_features[table_name], rows)
-        
+
         # Write the fact table to CSV
         write_csv("DamageToUser.csv", schema_features["DamageToUser"], fact_table)
-    
+
         # Log totals
         print(f"Total rows in merged dataset: {len(merged_data)}")
         for table_name, rows in tables.items():
             print(f"Table {table_name} contains {len(rows)} rows.")
         print(f"Fact table DamageToUser contains {len(fact_table)} rows.")
+
     except Exception as e:
         print(f"Error: {e}")
