@@ -1,50 +1,49 @@
 # -*- coding: utf-8 -*-
 """
-Upload data in the database
+Upload data into the database
 """
 
 import pyodbc
 import csv
-import os
 import datetime
 from tqdm import tqdm
 
 # Database connection details
-server = 'lds.di.unipi.it'
-database = 'Group_ID_8_DB'
-username = 'Group_ID_8'
-password = 'MA6U07RA'
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+connection_string = (
+    "DRIVER={ODBC Driver 17 for SQL Server};"
+    "SERVER=lds.di.unipi.it;"
+    "DATABASE=Group_ID_8_DB;"
+    "UID=Group_ID_8;"
+    "PWD=MA6U07RA"
+)
 
-# Primary keys and auto-generated fields for tables
+# Primary keys and fact table fields
 primary_keys = {
     "PersonDimension": "PERSON_ID NVARCHAR(50) PRIMARY KEY",
-    "VehicleDimension": "CRASH_UNIT_ID INT PRIMARY KEY",
-    "CrashReportDimension": "RD_NO NVARCHAR(50) PRIMARY KEY"
-}
-
-auto_generated_fields = {
-    "DateDimension": "[DateID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
-    "CauseDimension": "[CauseID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
-    "InjuryDimension": "[InjuryID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
-    "LocationDimension": "[LocationID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
-    "WeatherDimension": "[WeatherID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY",
+    "VehicleDimension": "VEHICLE_ID INT PRIMARY KEY",
+    "CrashReportDimension": "RD_NO NVARCHAR(50) PRIMARY KEY",
+    "DateDimension": "DateID INT PRIMARY KEY",
+    "LocationDimension": "LocationID INT PRIMARY KEY",
+    "WeatherDimension": "WeatherID INT PRIMARY KEY",
+    "InjuryDimension": "InjuryID INT PRIMARY KEY",
+    "CauseDimension": "CauseID INT PRIMARY KEY"
 }
 
 fact_table_fields = {
     "DamageToUser": """
-        [DTUID] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-        [DateID] INT NOT NULL FOREIGN KEY REFERENCES DateDimension(DateID),
-        [PERSON_ID] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES PersonDimension(PERSON_ID),
-        [LocationID] INT NOT NULL FOREIGN KEY REFERENCES LocationDimension(LocationID),
-        [WeatherID] INT NOT NULL FOREIGN KEY REFERENCES WeatherDimension(WeatherID),
-        [InjuryID] INT NOT NULL FOREIGN KEY REFERENCES InjuryDimension(InjuryID),
-        [CauseID] INT NOT NULL FOREIGN KEY REFERENCES CauseDimension(CauseID),
-        [CRASH_UNIT_ID] INT NOT NULL FOREIGN KEY REFERENCES VehicleDimension(CRASH_UNIT_ID),
-        [RD_NO] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES CrashReportDimension(RD_NO)
+        DTUID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        DateID INT NULL FOREIGN KEY REFERENCES DateDimension(DateID),
+        PERSON_ID NVARCHAR(255) NULL FOREIGN KEY REFERENCES PersonDimension(PERSON_ID),
+        LocationID INT NULL FOREIGN KEY REFERENCES LocationDimension(LocationID),
+        WeatherID INT NULL FOREIGN KEY REFERENCES WeatherDimension(WeatherID),
+        InjuryID INT NULL FOREIGN KEY REFERENCES InjuryDimension(InjuryID),
+        CauseID INT NULL FOREIGN KEY REFERENCES CauseDimension(CauseID),
+        VEHICLE_ID INT NULL FOREIGN KEY REFERENCES VehicleDimension(VEHICLE_ID),
+        RD_NO NVARCHAR(255) NULL FOREIGN KEY REFERENCES CrashReportDimension(RD_NO),
+        DAMAGE FLOAT,
+        NUM_UNITS INT
     """
 }
-
 
 csv_files = {
     'DateDimension.csv': 'DateDimension',
@@ -60,6 +59,8 @@ csv_files = {
 
 def infer_type(value):
     """Infer SQL type based on the value."""
+    if value is None or value == "":
+        return "NVARCHAR(255)"
     if value.isdigit():
         return "INT"
     try:
@@ -68,107 +69,124 @@ def infer_type(value):
     except ValueError:
         pass
     try:
-        datetime.datetime.strptime(value, "%m/%d/%Y %H:%M")
+        datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
         return "DATETIME"
     except ValueError:
-        pass
-    return "NVARCHAR(50)"
+        return "NVARCHAR(255)"
 
-# FUNCTION: infer table schema from csv by checking primary keys and foreign keys presence based on dicts above
 def infer_table_schema(csv_file, table_name):
     """Infer table schema from CSV file."""
     with open(csv_file, 'r', encoding='utf-8') as file:
         reader = csv.reader(file)
         headers = next(reader)
         sample_row = next(reader)
-        schema = []
+        schema = [f"{header} {infer_type(value)}" for header, value in zip(headers, sample_row)]
 
-        for header, value in zip(headers, sample_row):
-            sql_type = infer_type(value)
-            schema.append(f"[{header}] {sql_type}")
-        
-        # Add primary key if specified
         if table_name in primary_keys:
             pk_column = primary_keys[table_name].split()[0].strip()
-            schema = [
-                f"{col} PRIMARY KEY" if pk_column in col else col
-                for col in schema
-            ]
-
+            schema.append(f"CONSTRAINT PK_{table_name} PRIMARY KEY ({pk_column})")
         return ", ".join(schema)
 
-# FUNCTION: create table based on schema and correct types assigning correctly pk and fk constraints
 def create_table(connection, table_name, schema):
     """Create a table based on the given schema."""
     try:
         cursor = connection.cursor()
-        if table_name in auto_generated_fields:
-            schema = auto_generated_fields[table_name] + ", " + schema
-        create_statement = f"CREATE TABLE {table_name} ({schema});"
-        cursor.execute(create_statement)
+        cursor.execute(f"CREATE TABLE {table_name} ({schema});")
         connection.commit()
         print(f"Table {table_name} created successfully.")
-    except Exception as e:
+    except pyodbc.Error as e:
         print(f"Error creating table {table_name}: {e}")
 
-# FUNCTION: load data into the tables from the csv files
-def load_data_into_table(connection, table_name, csv_file, batch_size=1000):
-    """
-    Load data from a CSV file into the specified table using batch inserts for high efficiency.
-    
-    Args:
-        connection: pyodbc connection object.
-        table_name: Name of the database table.
-        csv_file: Path to the CSV file.
-        batch_size: Number of rows to insert in each batch.
-    """
+def validate_and_clean_row(headers, row):
+    """Validate and clean a row."""
+    cleaned_row = []
+    for header, value in zip(headers, row):
+        if value == "":  # Convert empty strings to NULL
+            cleaned_row.append(None)
+        elif header in ['DateID', 'LocationID', 'WeatherID', 'InjuryID', 'CauseID', 'VEHICLE_ID', 'NUM_UNITS']:
+            # Convert to INT for numeric foreign keys
+            try:
+                cleaned_row.append(int(value))
+            except ValueError:
+                cleaned_row.append(None)  # Use NULL if conversion fails
+        elif header == 'DAMAGE':
+            # Convert to FLOAT for numeric columns
+            try:
+                cleaned_row.append(float(value))
+            except ValueError:
+                cleaned_row.append(None)  # Use NULL if conversion fails
+        else:
+            # Treat other columns as strings
+            cleaned_row.append(value)
+    return tuple(cleaned_row)
+
+
+def load_data_into_table(connection, table_name, csv_file, batch_size=5000):
+    """Load data from CSV into the specified table with optimizations."""
     try:
+        cursor = connection.cursor()
+        cursor.fast_executemany = True  # Enable fast executemany for better performance
+        
         with open(csv_file, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            headers = next(reader)  # Read the header row
-            placeholders = ", ".join("?" for _ in headers)
-            insert_query = f"INSERT INTO {table_name} ({', '.join(headers)}) VALUES ({placeholders});"
-            
-            cursor = connection.cursor()
-            cursor.fast_executemany = True  # Enable fast inserts
-            
-            batch = []
-            for row in tqdm(reader, desc=f"Loading data into {table_name}"):
-                batch.append(tuple(row))
-                if len(batch) >= batch_size:
-                    cursor.executemany(insert_query, batch)
-                    batch = []  # Clear the batch
-            
+            headers = next(reader)
+
+            placeholders = ', '.join(['?'] * len(headers))
+            columns = ', '.join(headers)
+            insert_statement = f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})"
+            data = []
+
+            for row in tqdm(reader, desc=f"Loading {table_name}"):
+                cleaned_row = validate_and_clean_row(headers, row)
+                data.append(cleaned_row)
+
+                # Execute the batch when reaching the batch size
+                if len(data) >= batch_size:
+                    cursor.executemany(insert_statement, data)
+                    connection.commit()
+                    data = []
+
             # Insert any remaining rows
-            if batch:
-                cursor.executemany(insert_query, batch)
-            
-            connection.commit()
-            print(f"Data loaded into {table_name} successfully.")
+            if data:
+                cursor.executemany(insert_statement, data)
+                connection.commit()
+
+            print(f"Data successfully loaded into {table_name}.")
     except Exception as e:
         print(f"Error loading data into {table_name}: {e}")
 
-# MAIN
+
 if __name__ == "__main__":
     try:
         # Connect to the database
         connection = pyodbc.connect(connection_string)
         print("Connected to the database successfully.")
 
-        # Create dimension tables
-        for csv_file, table_name in csv_files.items():
-            if table_name != "DamageToUser":  # Skip fact table here
-                schema = infer_table_schema(csv_file, table_name)
-                create_table(connection, table_name, schema)
+        # Step 1: Create and load dimension tables
+        dimension_tables = [
+            'DateDimension.csv',
+            'PersonDimension.csv',
+            'VehicleDimension.csv',
+            'CrashReportDimension.csv',
+            'LocationDimension.csv',
+            'WeatherDimension.csv',
+            'CauseDimension.csv',
+            'InjuryDimension.csv'
+        ]
 
-        # Create fact table
+        for csv_file in dimension_tables:
+            table_name = csv_files[csv_file]
+            schema = infer_table_schema(csv_file, table_name)
+            create_table(connection, table_name, schema)
+            load_data_into_table(connection, table_name, csv_file)
+
+        # Step 2: Create and load the fact table
         fact_table_name = "DamageToUser"
         fact_table_schema = fact_table_fields[fact_table_name]
         create_table(connection, fact_table_name, fact_table_schema)
+        load_data_into_table(connection, fact_table_name, 'DamageToUser.csv')
 
-        # Populate tables with data
-        for csv_file, table_name in csv_files.items():
-            load_data_into_table(connection, table_name, csv_file)
+        print("All tables created and populated successfully.")
 
     except Exception as e:
         print(f"An error occurred: {e}")
