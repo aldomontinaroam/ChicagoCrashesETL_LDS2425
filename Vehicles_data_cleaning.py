@@ -16,9 +16,6 @@ class DataFrame:
 
     def head(self, n=5):
         return self.data[:n]
-    
-    def get_rows(self):
-        return self.data  # Change this to return all rows, not skip the header
 
     def get_column(self, column_name):
         """Ritorna una colonna come una lista."""
@@ -31,30 +28,16 @@ class DataFrame:
     def __getitem__(self, column_name):
         """Permette di accedere come con df['column']"""
         return self.get_column(column_name)
-
-    def __str__(self):
-        """Visualizza i dati in un formato tabellare."""
-        rows = [self.columns] + self.head()
-        col_widths = [max(len(str(value)) for value in col) for col in zip(*rows)]
-        formatted_rows = []
-        for row in rows:
-            formatted_row = " | ".join(str(value).ljust(width) for value, width in zip(row, col_widths))
-            formatted_rows.append(formatted_row)
-        return "\n".join(formatted_rows)
-
-    def convert_to_int(self, column_name):
-        """Converte i valori di una colonna specificata in interi, gestendo valori non numerici."""
-        if column_name in self.columns:
-            index = self.columns.index(column_name)
-            for row in self.data:
-                value = row[index].strip()
-                try:
-                    # Converte in float e poi in int per evitare problemi con i numeri decimali come '1.0'
-                    row[index] = int(float(value)) if value else None
-                except ValueError:
-                    row[index] = None  # Valore non convertibile
-        else:
-            raise ValueError(f"Colonna '{column_name}' non trovata.")
+    
+    def fillna(self, column, value=-1):
+        """Fills missing or invalid data in a column with a default value."""
+        if column not in self.columns:
+            raise ValueError(f"Colonna '{column}' non trovata.")
+        
+        index = self.columns.index(column)
+        for row in self.data:
+            if row[index] in [None, '', 'NaN', 'nan']:
+                row[index] = value
 
     def get_data(self):
         """Returns all data as a list of dictionaries."""
@@ -109,11 +92,6 @@ def write_csv(file_path, columns, rows):
 df = read_csv('Vehicles.csv')
 df._validate_data()
 
-# Converte le colonne specificate in int
-df.convert_to_int('VEHICLE_ID')
-df.convert_to_int('VEHICLE_YEAR')
-df.convert_to_int('OCCUPANT_CNT')
-
 """Pulizia della colonna MODEL, ho eliminato tutto il superfluo"""
 
 def clean_model_column(dataframe):
@@ -144,11 +122,22 @@ def clean_model_column(dataframe):
             row[model_index] = cleaned_value  # Aggiorna il valore pulito nella riga
 
 
+# Read CSV into DataFrame
+df = read_csv('Vehicles.csv')
+
+# Validate data
+df._validate_data()
+
+# Clean MODEL column
 clean_model_column(df)
 
+# Fill missing VEHICLE_ID with -1
+df.fillna('VEHICLE_ID', value=-1)
+
+# Write updated data back to a new CSV file
 columns = list(df.columns)
-print(columns)
 output_path = 'VEHICLES[updated].csv'
 rows = df.get_data()
-
 write_csv(output_path, columns, rows)
+
+print("Data cleaning and filling missing values completed successfully.")
