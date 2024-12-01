@@ -12,7 +12,7 @@ schema_features = {
                         "PERSON_TYPE", "UNIT_NO", "UNIT_TYPE", "DAMAGE_CATEGORY", 
                         "SAFETY_EQUIPMENT", "AIRBAG_DEPLOYED",
                         "PHYSICAL_CONDITION", "INJURY_CLASSIFICATION", "BAC_RESULT", "EJECTION"],
-    "VehicleDimension": ["VEHICLE_ID", "RD_NO", "CRASH_UNIT_ID", "MAKE", "MODEL", 
+    "VehicleDimension": ["VEHICLE_ID", "CRASH_UNIT_ID", "MAKE", "MODEL", 
                          "VEHICLE_YEAR", "VEHICLE_TYPE", "VEHICLE_DEFECT", "VEHICLE_USE", 
                          "LIC_PLATE_STATE", "TRAVEL_DIRECTION", 
                          "MANEUVER", "OCCUPANT_CNT", "FIRST_CONTACT_POINT"],
