@@ -215,27 +215,6 @@ def check_unique_ids(data_list):
         else:
             print(f"Dataset {i} ({first_key}): Contains duplicates.")
 
-def build_dimension_with_id(data, schema_features, dimension_name, id_column):
-    """
-    Builds a dimension table with unique IDs from the data.
-    """
-    dimension = []
-    id_counter = 1
-    mapping = {}
-    columns = schema_features[dimension_name]
-    key_columns = [col for col in columns if col != id_column]
-    for row in tqdm(data, desc=f"Building {dimension_name}", unit="row"):
-        dim_row = {col: row.get(col, None) for col in columns}
-        key = tuple(dim_row[col] for col in key_columns)
-        if key not in mapping:
-            mapping[key] = id_counter
-            id_counter += 1
-            dim_row[id_column] = mapping[key]
-            dimension.append(dim_row)
-        else:
-            pass
-    return dimension, mapping
-
 def write_csv(file_path, columns, rows):
     with open(file_path, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=columns)
