@@ -35,14 +35,15 @@ The repository is organized as follows:
   - `vehiclesDataCleaning.py`
 
 #### 2. Data Warehouse Schema
-- Designed using a **star schema** with one fact table (`DamageToUser`) and eight dimension tables: 
+- Designed using a **star schema** with one fact table (`DamageToUser`) and eight dimension tables: ![schema](https://github.com/aldomontinaroam/_lds24_files/blob/main/DATA/sql_server_dw_schema.png)
 
 #### 3. Data Upload and SSIS Implementation
 - **ETL Process:** Data transformation and upload using Python and **SQL Server Integration Services (SSIS)**.
 - Implemented sampling and controlled flow for **incremental data uploads**.
 - Scripts:
-  - `dataUpload.py`
-  - `ssis_dataflow.dtsx`
+  - `duplicateTables_SSIS.py`: duplicates tables used for 10% sampling from SSIS
+  - `split_tables.py`: merges raw datasets and creates data mart tables
+  - `upload_data.py`: uploads data into the designed database
 
 #### 4. Business Questions Using SSIS
 - Implemented **aggregate queries** to answer key business questions:
@@ -71,8 +72,7 @@ The repository is organized as follows:
   - **Person-centric analysis** of injuries and responsibilities.
 
 ---
-## Setup & Usage
-### **1. Requirements**
+## Requirements**
 - Python (>=3.8)
 - Microsoft SQL Server (>=2019) with SSIS & SSAS
 - Power BI Desktop
@@ -81,33 +81,11 @@ The repository is organized as follows:
   pip install pandas numpy geopy shapely h3
   ```
 
-### **2. Running the Scripts**
-- **Data Cleaning:**
-  ```bash
-  python scripts/cleaning/crashesDataCleaning.py
-  python scripts/cleaning/peopleDataCleaning.py
-  python scripts/cleaning/vehiclesDataCleaning.py
-  ```
-- **Data Upload to SQL Server:**
-  ```bash
-  python scripts/ETL/dataUpload.py
-  ```
-- **SSIS Package Execution:**
-  - Open `ssis_dataflow.dtsx` in **SQL Server Data Tools (SSDT)** and run the package.
-- **MDX Queries:**
-  - Run queries from `scripts/analysis/mdx_queries.md` in **SQL Server Management Studio (SSMS)**.
-- **Power BI Dashboards:**
-  - Open `reports/visualizations/*.pbix` in **Power BI Desktop**.
-
 ---
 ## Contributors
-- **Miccoli Martin**
-- **Montinaro Aldo**
-- **Poiani Marco**
-
----
-## License
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+- ![**Miccoli Martin**](https://github.com/Martinmiccoli)
+- ![**Montinaro Aldo**](https://github.com/aldomontinaroam)
+- ![**Poiani Marco**](https://github.com/MarcoPoiani00)
 
 ---
 ## References
