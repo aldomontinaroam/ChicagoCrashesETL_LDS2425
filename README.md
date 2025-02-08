@@ -72,7 +72,7 @@ The repository is organized as follows:
   - **Person-centric analysis** of injuries and responsibilities.
 
 ---
-## Requirements**
+## Requirements
 - Python (>=3.8)
 - Microsoft SQL Server (>=2019) with SSIS & SSAS
 - Power BI Desktop
