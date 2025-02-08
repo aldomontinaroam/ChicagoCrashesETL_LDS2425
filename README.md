@@ -1,5 +1,5 @@
 # Spotlight on the Windy City
-
+![img](https://github.com/aldomontinaroam/_lds24_files/blob/main/DATA/cover.png)
 This repository contains all the files and scripts created and used for the project developed as part of the **Laboratory of Data Science** module of the **Decision Support Systems** course within the **Master Programme in Data Science and Business Informatics** at the **Department of Computer Science** of Università di Pisa.
 
 The project focuses on analyzing traffic incidents in **Chicago** using data sourced from Kaggle, aiming to simulate a **Decision Support System** for an insurance company. The dataset contains information on crashes, people involved, and vehicles involved, spanning from January 2014 to January 2019. The project consists of two main parts:
