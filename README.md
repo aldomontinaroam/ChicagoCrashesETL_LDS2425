@@ -1,32 +1,26 @@
 # Spotlight on the Windy City
 ![img](https://github.com/aldomontinaroam/_lds24_files/blob/main/DATA/cover.png)
-This repository contains all the files and scripts created and used for the project developed as part of the **Laboratory of Data Science** module of the **Decision Support Systems** course within the **Master Programme in Data Science and Business Informatics** at the **Department of Computer Science** of Università di Pisa.
-
-The project focuses on analyzing traffic incidents in **Chicago** using data sourced from Kaggle, aiming to simulate a **Decision Support System** for an insurance company. The dataset contains information on crashes, people involved, and vehicles involved, spanning from January 2014 to January 2019. The project consists of two main parts:
+This repository contains all the files and scripts created and used for the project developed as part of the **Laboratory of Data Science** module of the **Decision Support Systems** course within the **Master Programme in Data Science and Business Informatics** at the **Department of Computer Science** of Università di Pisa. The project focuses on analyzing traffic incidents in **Chicago** using crashes data, aiming to simulate a **Decision Support System** for an insurance company. The dataset contains information on crashes, people involved, and vehicles involved, spanning from January 2014 to January 2019. The project consists of two main parts:
 1. **Database Design, Cleaning, and Population using Python and SQL Server Integration Services (SSIS)**
 2. **Analysis and Business Intelligence using SQL Server Analysis Services (SSAS), MDX Queries, and Power BI Dashboards**
-
 ---
 ## Repository Structure
 The repository is organized as follows:
 
 ```
-├── data/
-│   ├── raw/                  # Raw datasets (Crashes.csv, People.csv, Vehicles.csv)
-│   ├── cleaned/               # Cleaned and processed datasets
-│   ├── warehouse/             # Data warehouse schema and tables
+├── DATA/                      # Raw datasets provided by the lecturer
 │
-├── scripts/
-│   ├── cleaning/              # Python scripts for data cleaning and preprocessing
-│   ├── ETL/                   # SSIS package and SQL scripts for data integration
-│   ├── analysis/              # MDX queries and Power BI dashboard files
+├── Part1/
+│   ├── DataCleaning_scripts/  # Python scripts for data cleaning and preprocessing
+│   ├── SSIS/                  # SSIS package and files
+│   ├── EDA_scripts/           # Python scripts for exploratory data analysis
 │
-├── reports/
-│   ├── documentation/         # Project documentation and explanations
-│   ├── visualizations/        # Graphs and dashboards from Power BI
+├── Part2/
+│   ├── GROUP_8_CUBE/          # SSAS cube project files
+│   ├── PowerBI Dashboards/    # Graphs and dashboards from Power BI
 │
 ├── README.md                  # Project overview and instructions
-└── LICENSE                     # License information
+└── LDS2425_Group8_FullReport.pdf   # Project report
 ```
 
 ---
@@ -36,20 +30,12 @@ The repository is organized as follows:
 - Cleaning and preprocessing datasets using Python.
 - Handling missing values using techniques such as reverse geocoding and external data sources.
 - Scripts:
-  - `crashesDataCleaning.py`
+  - `crashesDataCleaning.py` and `utils_crashes.py`
   - `peopleDataCleaning.py`
   - `vehiclesDataCleaning.py`
 
 #### 2. Data Warehouse Schema
-- Designed using a **star schema** with one fact table (`DamageToUser`) and eight dimension tables:
-  - `DateDimension`
-  - `PersonDimension`
-  - `VehicleDimension`
-  - `CrashReportDimension`
-  - `CauseDimension`
-  - `InjuryDimension`
-  - `LocationDimension`
-  - `WeatherDimension`
+- Designed using a **star schema** with one fact table (`DamageToUser`) and eight dimension tables: 
 
 #### 3. Data Upload and SSIS Implementation
 - **ETL Process:** Data transformation and upload using Python and **SQL Server Integration Services (SSIS)**.
