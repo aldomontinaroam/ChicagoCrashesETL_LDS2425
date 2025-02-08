@@ -83,9 +83,9 @@ The repository is organized as follows:
 
 ---
 ## Contributors
-- ![**Miccoli Martin**](https://github.com/Martinmiccoli)
-- ![**Montinaro Aldo**](https://github.com/aldomontinaroam)
-- ![**Poiani Marco**](https://github.com/MarcoPoiani00)
+- [**Miccoli Martin**](https://github.com/Martinmiccoli)
+- [**Montinaro Aldo**](https://github.com/aldomontinaroam)
+- [**Poiani Marco**](https://github.com/MarcoPoiani00)
 
 ---
 ## References
