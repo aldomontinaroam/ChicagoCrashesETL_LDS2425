@@ -1,0 +1,125 @@
+----------------------------------------------------------------------------------------------
+------------------------------------ GROUP 8 MDX QUERIES -------------------------------------
+----------------------------------------------------------------------------------------------
+
+--###################################### Assignment 3 ######################################--
+-- Compute the average yearly damage costs as follows: for each crash, calculate the total damage 
+-- to the user divided by the number of distinct people involved in the crash. Then, compute the average 
+-- of these values across all crashes in a year.
+WITH 
+    MEMBER nPeopleInvolved AS DISTINCTCOUNT([Person Dimension].[PERSON ID].[PERSON ID])
+    MEMBER AvgDamagePerUser AS [Measures].[DAMAGE] / [Measures].[nPeopleInvolved]
+    SET ValidCrashes AS FILTER(
+        [Crash Report Dimension].[RD NO].Members,
+        [Measures].[nPeopleInvolved] > 0 AND [Measures].[DAMAGE] > 0)
+    MEMBER TotalAvgDamageInCrashes AS AVG([ValidCrashes], [Measures].[AvgDamagePerUser]), format_string = "Currency"
+SELECT TotalAvgDamageInCrashes ON COLUMNS,
+NONEMPTY([Date Dimension].[YEAR].[YEAR]) ON ROWS
+FROM [GROUP_8_CUBE];
+
+--###################################### Assignment 4 ######################################--
+-- For each location, show the damage costs increase or decrease, in percentage,
+-- with respect to the previous year.
+WITH
+    MEMBER DamagePreviousYear AS 
+        ([Date Dimension].[YEAR].CURRENTMEMBER.PREVMEMBER, [Measures].[DAMAGE])
+    MEMBER DamageChangePercentage AS 
+        IIF(ISEMPTY(DamagePreviousYear), NULL, 
+            ([Measures].[DAMAGE] - DamagePreviousYear) / DamagePreviousYear
+        ), FORMAT_STRING = 'Percent'
+SELECT 
+    NONEMPTY(([Date Dimension].[YEAR].[YEAR], DamageChangePercentage)) ON COLUMNS,
+    NONEMPTY([Location Dimension].[LOCATION].[LOCATION]) ON ROWS
+FROM [GROUP_8_CUBE];
+
+--###################################### Assignment 5 ######################################--
+-- For each quarter, show all the locations where the number of vehicles involved
+-- exceeds the average number of vehicles involved in the corresponding quarter of the
+-- previous year. Also, report the increase in percentages
+WITH MEMBER AvgVehiclesPrevYear AS
+    AVG(PARALLELPERIOD(
+            [Date Dimension].[DateHierarchy].[YEAR], 1, 
+            [Date Dimension].[DateHierarchy].CURRENTMEMBER
+        ), [Measures].[NUM UNITS] ), FORMAT_STRING = "#.##"
+  MEMBER PercentageIncrease AS 
+    IIF(AvgVehiclesPrevYear > 0, 
+		([Measures].[NUM UNITS] - AvgVehiclesPrevYear) / AvgVehiclesPrevYear,
+		NULL ), FORMAT_STRING = 'Percent'
+SELECT {[Measures].[NUM UNITS], AvgVehiclesPrevYear, PercentageIncrease} ON COLUMNS,
+FILTER(([Date Dimension].[YEAR].[YEAR], [Date Dimension].[QUARTER].[QUARTER], [Location Dimension].[LOCATION].[LOCATION]),
+    [Measures].[NUM UNITS] > AvgVehiclesPrevYear AND AvgVehiclesPrevYear <> 0) ON ROWS
+FROM [GROUP_8_CUBE];
+
+--###################################### Assignment 6 ######################################--
+-- For each vehicle type and each year, show the information and the (total) damage
+-- costs of the person with the highest reported damage.
+-- As "information" we decided to show: PERSON_ID, SEX, AGE, UNIT_NO
+WITH SET TopPersonByDamage AS
+    GENERATE(
+      ([Date Dimension].[DateHierarchy].[YEAR], 
+		[Vehicle Dimension].[VEHICLE TYPE].[VEHICLE TYPE]),
+      TOPCOUNT(
+        NONEMPTY(
+          ([Person Dimension].[PERSON ID].[PERSON ID],
+          [Person Dimension].[SEX].[SEX],
+          [Person Dimension].[AGE].[AGE],
+          [Person Dimension].[UNIT NO].[UNIT NO]),
+          [Measures].[DAMAGE]
+        ),
+        1,
+        [Measures].[DAMAGE]
+      )
+    )
+SELECT [Measures].[DAMAGE] ON COLUMNS,
+  NONEMPTY(
+    ([Date Dimension].[DateHierarchy].[YEAR], 
+		[Vehicle Dimension].[VEHICLE TYPE].[VEHICLE TYPE], 
+		TopPersonByDamage)
+  ) ON ROWS
+FROM [GROUP_8_CUBE]
+
+--###################################### Assignment 8.2 ######################################--
+-- For each year, show the most risky crash type and its total damage costs. To
+-- measure how risky a crash type is, you should assign a weight to each type of
+-- injury you encounter in the data (for example, a fatal injury weighs 5 times
+-- an incapacitating one, which weighs twice a non-incapacitating injury).
+WITH
+	MEMBER RiskScore AS
+		(5 * [Measures].[INJURIES FATAL]) +
+		(1 * [Measures].[INJURIES INCAPACITATING]) +
+		(0.5 * [Measures].[INJURIES NON INCAPACITATING]) +
+		(0.1 * [Measures].[INJURIES REPORTED NOT EVIDENT]),
+		FORMAT_STRING = "#.##"
+	MEMBER CrashTypeWithMaxRisk AS
+		TOPCOUNT(
+			[Crash Report Dimension].[CRASH TYPE].[CRASH TYPE], 
+			1, RiskScore).ITEM(0).NAME
+	MEMBER TotalDamageRiskiestCrashType AS
+		SUM(FILTER(
+			[Crash Report Dimension].[CRASH TYPE].[CRASH TYPE],
+			RiskScore = MAX([Crash Report Dimension].[CRASH TYPE].[CRASH TYPE], RiskScore)
+		), [Measures].[DAMAGE]), FORMAT_STRING = "Currency"
+SELECT { CrashTypeWithMaxRisk, TotalDamageRiskiestCrashType, RiskScore } ON COLUMNS,
+    NONEMPTY([Date Dimension].[YEAR].[YEAR]) ON ROWS
+FROM [GROUP_8_CUBE]
+
+-- using FIRST_CRASH_TYPE
+WITH
+	MEMBER RiskScore AS
+		(5 * [Measures].[INJURIES FATAL]) +
+		(1 * [Measures].[INJURIES INCAPACITATING]) +
+		(0.5 * [Measures].[INJURIES NON INCAPACITATING]) +
+		(0.1 * [Measures].[INJURIES REPORTED NOT EVIDENT]),
+		FORMAT_STRING = "#.##"
+	MEMBER CrashTypeWithMaxRisk AS
+		TOPCOUNT(
+			[Crash Report Dimension].[FIRST CRASH TYPE].[FIRST CRASH TYPE], 
+			1, RiskScore).ITEM(0).NAME
+	MEMBER TotalDamageRiskiestCrashType AS
+		SUM(FILTER(
+			[Crash Report Dimension].[FIRST CRASH TYPE].[FIRST CRASH TYPE],
+			RiskScore = MAX([Crash Report Dimension].[FIRST CRASH TYPE].[FIRST CRASH TYPE], RiskScore)
+		), [Measures].[DAMAGE]), FORMAT_STRING = "Currency"
+SELECT { CrashTypeWithMaxRisk, TotalDamageRiskiestCrashType, RiskScore } ON COLUMNS,
+    NONEMPTY([Date Dimension].[YEAR].[YEAR]) ON ROWS
+FROM [GROUP_8_CUBE]

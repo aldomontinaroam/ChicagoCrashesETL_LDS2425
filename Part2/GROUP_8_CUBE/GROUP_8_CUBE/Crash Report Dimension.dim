@@ -1,0 +1,204 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="a6bcb163-68b0-4450-bec3-e83df35a7e9e" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Crash Report Dimension</ID>
+  <Name>Crash Report Dimension</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3451" scrolltop="-3800" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="11557" y="10626" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="CrashReportDimension" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="4614" height="3027" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e000006120000d30b0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="Group_ID_8_CrashReportDimension" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-3451</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-3800</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="e47fc977-6b70-4668-8bf5-40e3d122dcbd">
+    <DataSourceViewID>Group ID 8 DB</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="81f5ae46-a535-4624-94be-e6f82ed585e0">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="b12a6a13-185f-4bbb-ac40-354ff8a2ffc0">
+      <ID>RD NO</ID>
+      <Name>RD NO</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="382d2265-1294-4643-be36-11a4ccbce529">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="de64b0ec-77b8-4867-a6c6-5128458e36d0">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>RD_NO</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="48395820-3726-4a61-9893-0153ac008cb7">
+          <AttributeID>REPORT TYPE</AttributeID>
+          <Name>REPORT TYPE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7464a7d6-3dd0-4d0c-bd4d-33b3be8226ab">
+          <AttributeID>DATE POLICE NOTIFIED</AttributeID>
+          <Name>DATE POLICE NOTIFIED</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="d4c95909-1d42-4576-b00a-070057c2d42c">
+          <AttributeID>BEAT OF OCCURRENCE</AttributeID>
+          <Name>BEAT OF OCCURRENCE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e5fc66d6-dbea-432f-ae16-c9fc6f297afb">
+          <AttributeID>CRASH TYPE</AttributeID>
+          <Name>CRASH TYPE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e351635b-3dd0-4cd6-8269-f2fa20cec190">
+          <AttributeID>FIRST CRASH TYPE</AttributeID>
+          <Name>FIRST CRASH TYPE</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3e4c018c-0c7b-4864-9c81-eb9900d6faee">
+      <ID>REPORT TYPE</ID>
+      <Name>REPORT TYPE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ca8e54ec-55ae-44b5-9cad-1110a36eb69f">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="05d0646b-d200-430e-bdd5-80a6f2626ca4">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>REPORT_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="544941ba-6be2-4310-9ec7-872488e16953">
+      <ID>DATE POLICE NOTIFIED</ID>
+      <Name>DATE POLICE NOTIFIED</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="aa22a2f0-a9ca-4256-86dc-81a8353b3e9e">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="36f8c052-d42e-4b5e-840e-6a3cb9be5575">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>DATE_POLICE_NOTIFIED</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6ce3df67-3645-4844-829c-7107062039f4">
+      <ID>BEAT OF OCCURRENCE</ID>
+      <Name>BEAT OF OCCURRENCE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="37246fbc-7f15-4f8b-b57e-badf7a66eea1">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fa1f892e-b486-4a2f-acc6-98fae7cb79ad">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>BEAT_OF_OCCURRENCE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="eb331085-7933-4af5-a175-161d2fe06ec1">
+      <ID>CRASH TYPE</ID>
+      <Name>CRASH TYPE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d9657569-b676-4bc6-b32f-7bcc5650ee40">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e47f1391-6b7c-4f7d-bc8a-e2b2361de94e">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>CRASH_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="77ccfdf7-6636-49a2-85c4-a904f5eb5cef">
+      <ID>FIRST CRASH TYPE</ID>
+      <Name>FIRST CRASH TYPE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4fffc920-d8a8-4c63-80f8-1fec927d960d">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9e2e3a1c-244c-4b96-a6c0-080bedcac2f5">
+            <TableID>Group_ID_8_CrashReportDimension</TableID>
+            <ColumnID>FIRST_CRASH_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

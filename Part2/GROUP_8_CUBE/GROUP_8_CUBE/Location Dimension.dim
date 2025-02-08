@@ -1,0 +1,398 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="f05d2c35-0afa-4c2a-94a7-d03585251531" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Location Dimension</ID>
+  <Name>Location Dimension</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3197" scrolltop="-626" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="11557" y="10626" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="LocationDimension" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="5122" height="9149" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e000002140000bd230000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="Group_ID_8_LocationDimension" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-3197</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-626</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="e9069361-f1c3-4f0f-87cd-844d556a68e1">
+    <DataSourceViewID>Group ID 8 DB</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="90cdc429-47d0-4ba0-b0a0-63f2308ee7a5">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="ce0abe8e-c3b1-4e99-8540-659b43a85306">
+      <ID>Location ID</ID>
+      <Name>Location ID</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="caf29e74-d4b6-4305-a236-b550baf04c62">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d6572974-d72b-430a-b150-44b9fe766d14">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>LocationID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="9ccdfcbf-d5de-474a-936c-19d6c385feae">
+          <AttributeID>LOCATION</AttributeID>
+          <Name>LOCATION</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="fbbdaf6d-c3ae-4411-abe1-9ca10704f093">
+          <AttributeID>LATITUDE</AttributeID>
+          <Name>LATITUDE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1d52ec99-17e5-45bc-9167-65277af27cd5">
+          <AttributeID>LONGITUDE</AttributeID>
+          <Name>LONGITUDE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="f0d0e3f2-d95f-4d8b-984b-0d8ae24d4a3a">
+          <AttributeID>STREET NO</AttributeID>
+          <Name>STREET NO</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="83d12556-2e98-463d-b0ab-8d7f52f397b0">
+          <AttributeID>STREET NAME</AttributeID>
+          <Name>STREET NAME</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="508da3cf-bcd7-44e9-8d3d-a8905a5e298f">
+          <AttributeID>STREET DIRECTION</AttributeID>
+          <Name>STREET DIRECTION</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="924e67c2-1609-4a22-829b-8fca35cfec33">
+          <AttributeID>H3</AttributeID>
+          <Name>H3</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8ae357f8-a4a6-46aa-8f9b-d7784fae6022">
+          <AttributeID>TRAFFIC CONTROL DEVICE</AttributeID>
+          <Name>TRAFFIC CONTROL DEVICE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8570c2e7-1989-436f-9cf4-0f70f12cb993">
+          <AttributeID>TRAFFICWAY TYPE</AttributeID>
+          <Name>TRAFFICWAY TYPE</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="31e8da82-d96e-463f-8ef2-af3ccc600fa5">
+          <AttributeID>ROADWAY SURFACE COND</AttributeID>
+          <Name>ROADWAY SURFACE COND</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a6dd1335-6ecb-4620-ad73-1bdeced1c6d2">
+          <AttributeID>ROAD DEFECT</AttributeID>
+          <Name>ROAD DEFECT</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7f58382b-6984-4225-ac45-3ba3ca7e1539">
+          <AttributeID>POSTED SPEED LIMIT</AttributeID>
+          <Name>POSTED SPEED LIMIT</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="e504830a-6e94-480d-873c-092bfdfe0e85">
+          <AttributeID>DEVICE CONDITION</AttributeID>
+          <Name>DEVICE CONDITION</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a70a32e8-2d08-4e3c-bcb4-06ba9ded7093">
+          <AttributeID>ALIGNMENT</AttributeID>
+          <Name>ALIGNMENT</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="586ad862-cde3-4283-af56-6079173fb948">
+      <ID>LOCATION</ID>
+      <Name>LOCATION</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0e6ab170-5aaf-4a77-885c-a336bedb38df">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="59a28772-d335-4e97-a1a5-bcbb31f2298a">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>LOCATION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4b63ca8c-d4bc-443a-99e7-f01ff1f9ff47">
+      <ID>LATITUDE</ID>
+      <Name>LATITUDE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="da8886ee-53e3-4e91-82fb-f1e8f3a90bf5">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2459d36c-a90e-409d-a106-d933e25d9e66">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>LATITUDE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="20e06f47-9c97-40cf-886c-97b6d69f96e5">
+      <ID>LONGITUDE</ID>
+      <Name>LONGITUDE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5448a1ae-cac5-4666-9c8b-bcc889dd9119">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fb001570-976f-474f-81b7-51541481419a">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>LONGITUDE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="6f957ff7-ecbb-41a0-bfd2-609a9eeb2b23">
+      <ID>STREET NO</ID>
+      <Name>STREET NO</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5c092421-8b8c-4f08-ba98-3c9d7044a39c">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5dea2920-67dc-41f1-870b-170ac2e288aa">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>STREET_NO</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="099ac249-3634-44cd-87fc-49f0eba022b2">
+      <ID>STREET NAME</ID>
+      <Name>STREET NAME</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a86fb7f0-3728-4355-81f3-86c93e6952c2">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c0258312-bc6a-4bcb-9e82-bc154e27b294">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>STREET_NAME</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a036f5c2-a280-4f39-b8d4-4f826ba8341b">
+      <ID>STREET DIRECTION</ID>
+      <Name>STREET DIRECTION</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d3cc6b68-9575-4562-9faf-a11fe905fca3">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f9277370-57ec-4727-aa40-e2ed28c9665b">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>STREET_DIRECTION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="33d10cae-3800-4614-9462-76e0806a9ac8">
+      <ID>H3</ID>
+      <Name>H3</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5554e5ef-f37e-47ef-a19b-54f107efcd39">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="37d0e8bf-fab1-45d4-89b9-b8b97e799a9d">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>H3</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="7aec5d52-5606-44f3-84b9-08b50b02be1a">
+      <ID>TRAFFIC CONTROL DEVICE</ID>
+      <Name>TRAFFIC CONTROL DEVICE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e17f6539-cb11-4f81-bf3e-7432fe32787b">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3eb49713-49cd-48de-a6c3-aad6526428bf">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>TRAFFIC_CONTROL_DEVICE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1dcbbc61-fc03-40b7-aa0e-fd59b08ba772">
+      <ID>TRAFFICWAY TYPE</ID>
+      <Name>TRAFFICWAY TYPE</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0f969aea-f8fa-4094-9943-0d6b1592743a">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9e3e6bea-02dd-424e-b95f-4d5d196f697a">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>TRAFFICWAY_TYPE</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="95d62efc-2baf-4aff-b31c-adb3d397fbfc">
+      <ID>ROADWAY SURFACE COND</ID>
+      <Name>ROADWAY SURFACE COND</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9d9386be-179e-4513-9b54-6b903ef7f437">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2c52f70a-4a2c-4f1a-a0f8-0acea91e6a89">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>ROADWAY_SURFACE_COND</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="328de963-fe74-4a9e-a374-174aacb078e6">
+      <ID>ROAD DEFECT</ID>
+      <Name>ROAD DEFECT</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1a0f3169-24c2-4b66-ac39-091efd1a07ad">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="edb65265-39c3-49c7-9129-92cdb5155c6d">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>ROAD_DEFECT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d0ccef9a-058f-498e-88cb-913ede1ff8cf">
+      <ID>POSTED SPEED LIMIT</ID>
+      <Name>POSTED SPEED LIMIT</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="624fda91-8739-4f5d-8fbe-b9a146c8f47e">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="27a06d96-e032-41e7-a788-8309e3cc1865">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>POSTED_SPEED_LIMIT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="9fc3eafc-0b2c-4576-8bd4-91ea97793f6a">
+      <ID>DEVICE CONDITION</ID>
+      <Name>DEVICE CONDITION</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1d8ee5e9-bfbc-403e-b578-3ecac494714f">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="840bca81-936c-415d-8b3d-7705308ddabd">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>DEVICE_CONDITION</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="df073f6f-5ba7-44e0-9850-95f98df3fef1">
+      <ID>ALIGNMENT</ID>
+      <Name>ALIGNMENT</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="f6b57861-af4a-413f-b094-5c04e1b71aef">
+          <DataType>WChar</DataType>
+          <DataSize>255</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bf4eb0f3-69ed-4376-8e6c-99a61c9f46a0">
+            <TableID>Group_ID_8_LocationDimension</TableID>
+            <ColumnID>ALIGNMENT</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="6fa98247-0104-40e6-aae6-28cda37b52c8">
+      <ID>Hierarchy</ID>
+      <Name>StreetNameNo</Name>
+      <Levels>
+        <Level dwd:design-time-name="a021c5a9-a8cc-4af7-b4ca-7c897d882747">
+          <ID>STREET NAME</ID>
+          <Name>STREET NAME</Name>
+          <SourceAttributeID>STREET NAME</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="dd856b26-0a5f-4d76-8b05-fe10afe167ba">
+          <ID>STREET NO</ID>
+          <Name>STREET NO</Name>
+          <SourceAttributeID>STREET NO</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>
