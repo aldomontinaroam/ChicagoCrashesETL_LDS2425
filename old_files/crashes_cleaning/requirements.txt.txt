@@ -1,4 +1,0 @@
-geopy
-tqdm
-shapely
-h3
