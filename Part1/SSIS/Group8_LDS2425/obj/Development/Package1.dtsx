@@ -1,0 +1,1065 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/5/2024 12:19:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DELL-AM"
+  DTS:CreatorName="DELL-AM\aldom"
+  DTS:DTSID="{9846E542-E27E-4DED-91B3-5CFB3321BA73}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{48187978-EBFF-495F-8935-142639D55997}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{577550E0-ECC0-418C-A9DE-095F93F11DF3}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\aldom\Documents\LDS_Project\split_tables\DamageToUser.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERSON_ID"
+              DTS:DTSID="{8B588E24-29C2-4CB6-BE6B-4919EE1E2774}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="RD_NO"
+              DTS:DTSID="{1D825BD2-F648-4FCD-BFFD-90D744EA4D8E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="VEHICLE_ID"
+              DTS:DTSID="{C36DD1F8-729B-47DF-846F-C3CD5B0D88D0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateID"
+              DTS:DTSID="{45308E5B-1AB3-460F-A048-296A2B262E4F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LocationID"
+              DTS:DTSID="{FB8B6A9B-6902-4FD4-A084-9490866E2C7A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="WeatherID"
+              DTS:DTSID="{7C961DB6-526E-4D77-AF22-56E284321B78}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="InjuryID"
+              DTS:DTSID="{63C35BFF-1A78-45A8-9702-B6B794DBD24B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CauseID"
+              DTS:DTSID="{ECA73E5B-62BA-4AB6-8276-FBBD542CAF46}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DAMAGE"
+              DTS:DTSID="{20A22B82-218B-47B9-969D-E34B1E0BB016}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NUM_UNITS"
+              DTS:DTSID="{83167D09-890F-43FF-A8DE-3DA2C27371E7}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{441B07CF-8EEE-40AA-B920-1F28781CE52F}"
+      DTS:ObjectName="lds.di.unipi.it.Group_ID_8_DB.Group_ID_8">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=lds.di.unipi.it;User ID=Group_ID_8;Initial Catalog=Group_ID_8_DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{441B07CF-8EEE-40AA-B920-1F28781CE52F}lds.di.unipi.it.Group_ID_8_DB.Group_ID_8;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXDtdSaVr1UGp0XMZ0pyh5AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD2foK/s3rz2aVEckXeG0YwmFqRVRyY2r7eI/dKi7HrewAAAAAOgAAAAAIAACAAAAD8upK/Llvyh1Rz5MftRLW6noenPFUDcyi55n6CDbZ/riAAAAAF2+wPUCcMo2QbTr3znVFiwwfGcoR+E7DguwAUUbgbKUAAAAAgDoXhI7qMpY4+Cjp53XE1edrITb7h9DBjX8Z0JQyrXOyp+rqglnttogsI6kFA6syVnsYr2/tvO1q4cY37CJe8</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Upload Fact Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{71bd6de0-cdab-4522-a1d0-31c2c796161b}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Upload Fact Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Upload Fact Table\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input].Columns[PERSON_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input].Columns[RD_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RD_NO"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[RD_NO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PERSON_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PERSON_ID]"
+                      name="Copy of PERSON_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[PERSON_ID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RD_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RD_NO]"
+                      name="Copy of RD_NO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[RD_NO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Upload Fact Table\Flat File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Flat File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Upload Fact Table\Flat File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[PERSON_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PERSON_ID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[RD_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RD_NO]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[RD_NO]"
+                      name="RD_NO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[VEHICLE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[VEHICLE_ID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[VEHICLE_ID]"
+                      name="VEHICLE_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DateID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DateID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DateID]"
+                      name="DateID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[LocationID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocationID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[LocationID]"
+                      name="LocationID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[WeatherID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[WeatherID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[WeatherID]"
+                      name="WeatherID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[InjuryID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[InjuryID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[InjuryID]"
+                      name="InjuryID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[CauseID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[CauseID]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[CauseID]"
+                      name="CauseID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DAMAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DAMAGE]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DAMAGE]"
+                      name="DAMAGE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[NUM_UNITS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[NUM_UNITS]"
+                      length="50"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[NUM_UNITS]"
+                      name="NUM_UNITS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PERSON_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[RD_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RD_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[VEHICLE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="VEHICLE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DateID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LocationID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[WeatherID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="WeatherID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[InjuryID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InjuryID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[CauseID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CauseID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[DAMAGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DAMAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[NUM_UNITS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NUM_UNITS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Upload Fact Table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Group_ID_8].[DamageToUser_SSIS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Upload Fact Table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VEHICLE_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="VEHICLE_ID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEHICLE_ID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[VEHICLE_ID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DateID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DateID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LocationID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LocationID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[LocationID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WeatherID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="WeatherID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[WeatherID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InjuryID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InjuryID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InjuryID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[InjuryID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CauseID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CauseID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseID]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[CauseID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DAMAGE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DAMAGE"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DAMAGE]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[DAMAGE]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NUM_UNITS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NUM_UNITS"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_UNITS]"
+                      lineageId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output].Columns[NUM_UNITS]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Copy of PERSON_ID"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSON_ID]"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Copy of RD_NO"
+                      externalMetadataColumnId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RD_NO]"
+                      lineageId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of RD_NO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DTUID]"
+                      dataType="i4"
+                      name="DTUID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
+                      dataType="i4"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      dataType="i4"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherID]"
+                      dataType="i4"
+                      name="WeatherID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InjuryID]"
+                      dataType="i4"
+                      name="InjuryID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseID]"
+                      dataType="i4"
+                      name="CauseID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEHICLE_ID]"
+                      dataType="i4"
+                      name="VEHICLE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      name="RD_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DAMAGE]"
+                      dataType="r8"
+                      name="DAMAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_UNITS]"
+                      dataType="i4"
+                      name="NUM_UNITS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Upload Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Upload Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Upload Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Upload Fact Table\Percentage Sampling"
+              componentClassID="Microsoft.PctSampling"
+              contactInfo="Percentage Sampling;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Randomly samples a percentage of rows from an input data flow. For example, use it twice to help create a data mining model: create one sample for training the model and another sample for testing the model."
+              name="Percentage Sampling">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage size of the sample."
+                  expressionType="Notify"
+                  name="SamplingValue">10</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the seed for the random number generator."
+                  name="SamplingSeed">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Upload Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]"
+                  name="Percentage Sampling Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Upload Fact Table\Percentage Sampling.Outputs[Sampling Selected Output]"
+                  exclusionGroup="1"
+                  name="Sampling Selected Output"
+                  synchronousInputId="Package\Upload Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Upload Fact Table\Percentage Sampling.Outputs[Sampling Unselected Output]"
+                  exclusionGroup="1"
+                  name="Sampling Unselected Output"
+                  synchronousInputId="Package\Upload Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">false</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Upload Fact Table.Paths[Data Conversion Output]"
+              endId="Package\Upload Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]"
+              name="Data Conversion Output"
+              startId="Package\Upload Fact Table\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Upload Fact Table.Paths[Flat File Source Output]"
+              endId="Package\Upload Fact Table\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\Upload Fact Table\Flat File Source.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Upload Fact Table.Paths[Sampling Selected Output]"
+              endId="Package\Upload Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Sampling Selected Output"
+              startId="Package\Upload Fact Table\Percentage Sampling.Outputs[Sampling Selected Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="163.2,41.6"
+          Id="Package\Upload Fact Table"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Upload Fact Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Upload Fact Table\Percentage Sampling"
+          TopLeft="460.000000979219,142.235293992972" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Upload Fact Table\Data Conversion"
+          TopLeft="472.142858147925,75.705882286582" />
+        <EdgeLayout
+          Id="Package\Upload Fact Table.Paths[Data Conversion Output]"
+          TopLeft="549.271429563572,117.305882286582">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.9294117063903"
+              Start="0,0"
+              End="0,17.4294117063903">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.4294117063903" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Upload Fact Table\Flat File Source"
+          TopLeft="273.57142915379,27.5294117405753" />
+        <EdgeLayout
+          Id="Package\Upload Fact Table.Paths[Flat File Source Output]"
+          TopLeft="423.97142915379,48.3294117405753">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.171428994135,48.1764705460067"
+              Start="0,0"
+              End="40.671428994135,48.1764705460067">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="20.0857144970675,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.0857144970675,0"
+                    Point2="24.0857144970675,0"
+                    Point3="24.0857144970675,4" />
+                  <mssgle:LineSegment
+                    End="24.0857144970675,44.1764705460067" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.0857144970675,44.1764705460067"
+                    Point2="24.0857144970675,48.1764705460067"
+                    Point3="28.0857144970675,48.1764705460067" />
+                  <mssgle:LineSegment
+                    End="40.671428994135,48.1764705460067" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Upload Fact Table\OLE DB Destination"
+          TopLeft="442.85714379987,251.588235073591" />
+        <EdgeLayout
+          Id="Package\Upload Fact Table.Paths[Sampling Selected Output]"
+          TopLeft="548.800000979219,183.835293992972">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20.7428571793497,67.7529410806185"
+              Start="0,0"
+              End="-20.7428571793497,60.2529410806185">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.8764705403092" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.8764705403092"
+                    Point2="0,33.8764705403092"
+                    Point3="-4,33.8764705403092" />
+                  <mssgle:LineSegment
+                    End="-16.7428571793497,33.8764705403092" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16.7428571793497,33.8764705403092"
+                    Point2="-20.7428571793497,33.8764705403092"
+                    Point3="-20.7428571793497,37.8764705403092" />
+                  <mssgle:LineSegment
+                    End="-20.7428571793497,60.2529410806185" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-68.3134793709249,38.8764705403092,115.8841015625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Upload Fact Table\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

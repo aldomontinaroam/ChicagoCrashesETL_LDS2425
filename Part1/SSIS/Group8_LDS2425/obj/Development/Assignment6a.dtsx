@@ -1,0 +1,2596 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/3/2024 8:27:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MARTIN"
+  DTS:CreatorName="MARTIN\marti"
+  DTS:DTSID="{489BE6CD-0214-433E-A384-C4B5C4CC49D5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{CF90B59D-93CA-4D73-A097-32C61B3D59B0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{BE8E8CF6-43EA-44AF-84E3-B111176B888F}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\marti\Desktop\Prova sql server\6a_v1.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A2B630F8-248A-45EB-9428-EF24D0D8A497}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\aldom\Desktop\Assignment6a.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="21"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Total_Crashes"
+              DTS:DTSID="{54B7EEB9-FF91-43A5-B18C-2AF5CF93A621}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="YEAR"
+              DTS:DTSID="{5EA79741-8718-45A3-9C1E-0D6086DFDD80}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERSON_ID"
+              DTS:DTSID="{BE744263-3CA6-426A-A4A4-4DC5761AB903}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{22F34CFC-F216-4C6E-BC37-9DB4D83B5CBA}"
+      DTS:ObjectName="lds.di.unipi.it.Group_ID_8_DB.Group_ID_8">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=lds.di.unipi.it;User ID=Group_ID_8;Initial Catalog=Group_ID_8_DB;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{22F34CFC-F216-4C6E-BC37-9DB4D83B5CBA}lds.di.unipi.it.Group_ID_8_DB.Group_ID_8;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXDtdSaVr1UGp0XMZ0pyh5AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADbTF93Mibw4E/QFeVg3BB3nANG3y3bbS/vIis/rnJvQAAAAAAOgAAAAAIAACAAAAC75UNPgrqu1dUo71KSLUVIGEe6o2jMnh2PLHL8VmYXxSAAAAB0jW0Go5/RV6aFVFR7hPPkKKYrliiKyqRIsYpyoETSi0AAAAD2pz69VvgJpPI4ZAGYNbg4CCi7ZYOZnrYSZ6QAV/3A6s9j8E9IYQMQ0mtVBsgQvTDK2/AtZJg6lue4Wi5PWhOy</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Saving into a file]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{C1D08101-7177-4E85-BE02-477320ED694D}"
+      DTS:ObjectName="Saving into a file">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\marti\Desktop\Prova sql server\6a.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="21"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Total_Crashes"
+              DTS:DTSID="{B966AE0C-14C4-4CB0-801C-6A4BE44F7EF7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="YEAR"
+              DTS:DTSID="{F62D5AFD-E791-4CA7-91CC-A9828EA326C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AGE"
+              DTS:DTSID="{A9C98DD3-62A0-4BE8-A6B5-321D400DB501}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="STATE"
+              DTS:DTSID="{8D7E9099-CC8A-44B1-BF9C-B820551C4AE1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SEX"
+              DTS:DTSID="{088F57A0-AFFC-4D42-A157-DA00ECF9AC53}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CITY"
+              DTS:DTSID="{C7A5C38B-5504-4F36-A8F9-1E66134062DE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERSON_ID"
+              DTS:DTSID="{EA93D8EC-8821-47FC-AB5B-30C4CA76CC6B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="255"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PERSON_TYPE"
+              DTS:DTSID="{588F9B27-76F0-45D1-870C-872B98A9E645}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Assignment6a"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{A565C502-E936-4E84-8E0E-4668E179FE18}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Assignment6a"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Assignment6a\Aggregazione"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregazione;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;3"
+              description="Aggrega i dati con funzioni quali Media, Somma, Conta numeri, Max e Min. Ad esempio, raggruppare i dati per calcolare la somma delle vendite per prodotto o la media giornaliera delle visite."
+              name="Aggregazione"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero approssimativo di chiavi Group By generate dall'aggregazione. Basso indica 500.000 valori di chiave, Medio indica 5 milioni di valori di chiave e Alto indica più di 25 milioni di valori di chiave. Non specificato indica che non viene utilizzato alcun valore KeyScale."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifica il numero esatto di chiavi Group By generate dall'aggregazione. Se si specifica un valore KeyScale, il valore di Keys ha la precedenza."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero approssimativo di valori Distinct in una colonna a cui viene applicata la funzione di aggregazione Count Distinct. Basso indica 500.000 valori di chiave, Medio indica 5 milioni di valori di chiave e Alto indica 25 milioni di valori di chiave. Non specificato indica che non viene utilizzato alcun valore CountDistinctScale."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifica il numero approssimativo di valori Distinct in una colonna a cui viene applicata la funzione di aggregazione Count Distinct. Se si specifica un valore CountDistinctScale, il valore in CountDistinctKeys ha la precedenza."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la percentuale di estensione della memoria consentita durante l'aggregazione. I valori validi sono compresi tra 1 e 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\Aggregazione.Inputs[Input aggregazione 1]"
+                  name="Input aggregazione 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Aggregazione.Inputs[Input aggregazione 1].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[RD_NO]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Aggregazione.Inputs[Input aggregazione 1].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[YEAR]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Aggregazione.Inputs[Input aggregazione 1].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1]"
+                  name="Output aggregazione 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifica il numero approssimativo di chiavi Group By generate dall'aggregazione. Basso indica 500.000 valori di chiave, Medio indica 5 milioni di valori di chiave e Alto indica più di 25 milioni di valori di chiave. Non specificato indica che non viene utilizzato alcun valore KeyScale."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifica il numero esatto di chiavi Group By generate dall'aggregazione. Se si specifica un valore KeyScale, il valore di Keys ha la precedenza."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[Total_Crashes]"
+                      dataType="ui8"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[Total_Crashes]"
+                      name="Total_Crashes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'ID della colonna di input utilizzata nell'aggregazione."
+                          name="AggregationColumnId">#{Package\Assignment6a\Merge.Outputs[Output merge join].Columns[RD_NO]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di aggregazione."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica se la colonna richieste interventi di gestione speciali perché contiene dati di dimensioni eccessive o richiede una precisione maggiore rispetto al tipo di dati float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni per il confronto di stringhe."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'ID della colonna di input utilizzata nell'aggregazione."
+                          name="AggregationColumnId">#{Package\Assignment6a\Merge.Outputs[Output merge join].Columns[YEAR]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di aggregazione."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica se la colonna richieste interventi di gestione speciali perché contiene dati di dimensioni eccessive o richiede una precisione maggiore rispetto al tipo di dati float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni per il confronto di stringhe."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[PERSON_ID]"
+                      name="PERSON_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'ID della colonna di input utilizzata nell'aggregazione."
+                          name="AggregationColumnId">#{Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_ID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di aggregazione."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indica se la colonna richieste interventi di gestione speciali perché contiene dati di dimensioni eccessive o richiede una precisione maggiore rispetto al tipo di dati float."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni per il confronto di stringhe."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\DamageToUser_SSIS"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="DamageToUser_SSIS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[Group_ID_8].[DamageToUser]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Assignment6a\DamageToUser_SSIS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[DateID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DateID]"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[DateID]"
+                      name="DateID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_ID]"
+                      length="255"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[RD_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[RD_NO]"
+                      length="255"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[RD_NO]"
+                      name="RD_NO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DTUID]"
+                      dataType="i4"
+                      name="DTUID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DateID]"
+                      dataType="i4"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[LocationID]"
+                      dataType="i4"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[WeatherID]"
+                      dataType="i4"
+                      name="WeatherID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[InjuryID]"
+                      dataType="i4"
+                      name="InjuryID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CauseID]"
+                      dataType="i4"
+                      name="CauseID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[VEHICLE_ID]"
+                      dataType="i4"
+                      name="VEHICLE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      name="RD_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DAMAGE]"
+                      dataType="r8"
+                      name="DAMAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].ExternalColumns[NUM_UNITS]"
+                      dataType="i4"
+                      name="NUM_UNITS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[DateID]"
+                      name="DateID" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_ID]"
+                      name="PERSON_ID" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[RD_NO]"
+                      name="RD_NO" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\DateDimension_SSIS"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="DateDimension_SSIS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[Group_ID_8].[DateDimension]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Assignment6a\DateDimension_SSIS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[DateID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DateID]"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[DateID]"
+                      name="DateID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[YEAR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[YEAR]"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[YEAR]"
+                      name="YEAR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DateID]"
+                      dataType="i4"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CRASH_DATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRASH_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[YEAR]"
+                      dataType="i4"
+                      name="YEAR" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[QUARTER]"
+                      dataType="i4"
+                      name="QUARTER" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CRASH_MONTH]"
+                      dataType="i4"
+                      name="CRASH_MONTH" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DAY]"
+                      dataType="i4"
+                      name="DAY" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CRASH_DAY_OF_WEEK]"
+                      dataType="i4"
+                      name="CRASH_DAY_OF_WEEK" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CRASH_HOUR]"
+                      dataType="i4"
+                      name="CRASH_HOUR" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].ExternalColumns[MINUTE]"
+                      dataType="i4"
+                      name="MINUTE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[DateID]"
+                      name="DateID" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[YEAR]"
+                      name="YEAR" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Assignment6a\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].Columns[Total_Crashes]"
+                      cachedDataType="ui8"
+                      cachedName="Total_Crashes"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Total_Crashes]"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[Total_Crashes]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      externalMetadataColumnId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[YEAR]"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[YEAR]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      externalMetadataColumnId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PERSON_ID]"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[PERSON_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Total_Crashes]"
+                      dataType="ui8"
+                      name="Total_Crashes" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[YEAR]"
+                      dataType="i4"
+                      name="YEAR" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\Merge"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Combina due flussi di dati ordinati in uno solo tramite join di tipo FULL, LEFT o INNER. Questa trasformazione è consigliata quando i flussi di dati possono essere ordinati alle relative origini."
+              name="Merge"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il tipo di join da eseguire."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero di colonne nella chiave di ordinamento."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori Null vengono considerati come valori uguali."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica il numero massimo di buffer richiesti per input prima dell'attivazione del blocco."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\Merge.Inputs[Input merge join sinistro]"
+                  hasSideEffects="true"
+                  name="Input merge join sinistro">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[YEAR]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[RD_NO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Assignment6a\Merge.Inputs[Input merge join destro]"
+                  hasSideEffects="true"
+                  name="Input merge join destro">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[CITY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CITY"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[CITY]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[STATE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="STATE"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[STATE]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[SEX]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SEX"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[SEX]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[AGE]"
+                      cachedDataType="i4"
+                      cachedName="AGE"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[AGE]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[PERSON_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_TYPE"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_TYPE]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\Merge.Outputs[Output merge join]"
+                  isSorted="true"
+                  name="Output merge join">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[YEAR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[RD_NO]"
+                      name="RD_NO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[RD_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join sinistro].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[CITY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[CITY]"
+                      name="CITY">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[CITY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[STATE]"
+                      name="STATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[STATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[SEX]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[SEX]"
+                      name="SEX">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[SEX]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[AGE]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[AGE]"
+                      name="AGE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[AGE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge.Outputs[Output merge join].Columns[PERSON_TYPE]"
+                      name="PERSON_TYPE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge.Inputs[Input merge join destro].Columns[PERSON_TYPE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\Merge join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Combina due flussi di dati ordinati in uno solo tramite join di tipo FULL, LEFT o INNER. Questa trasformazione è consigliata quando i flussi di dati possono essere ordinati alle relative origini."
+              name="Merge join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il tipo di join da eseguire."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero di colonne nella chiave di ordinamento."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori Null vengono considerati come valori uguali."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica il numero massimo di buffer richiesti per input prima dell'attivazione del blocco."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\Merge join.Inputs[Input merge join sinistro]"
+                  hasSideEffects="true"
+                  name="Input merge join sinistro">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[DateID]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[RD_NO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Assignment6a\Merge join.Inputs[Input merge join destro]"
+                  hasSideEffects="true"
+                  name="Input merge join destro">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge join.Inputs[Input merge join destro].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[DateID]" />
+                    <inputColumn
+                      refId="Package\Assignment6a\Merge join.Inputs[Input merge join destro].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[YEAR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\Merge join.Outputs[Output merge join]"
+                  isSorted="true"
+                  name="Output merge join">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[PERSON_ID]"
+                      name="PERSON_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[RD_NO]"
+                      name="RD_NO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[RD_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[DateID]"
+                      name="DateID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge join.Inputs[Input merge join sinistro].Columns[DateID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Colonna di input associata a questa colonna di output"
+                          name="InputColumnID">#{Package\Assignment6a\Merge join.Inputs[Input merge join destro].Columns[YEAR]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\PersonDimesion_SSIS"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="PersonDimesion_SSIS"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[Group_ID_8].[PersonDimension]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Assignment6a\PersonDimesion_SSIS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_ID]"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[CITY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CITY]"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[CITY]"
+                      name="CITY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[STATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[STATE]"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[SEX]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[SEX]"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[SEX]"
+                      name="SEX"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[AGE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[AGE]"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[AGE]"
+                      name="AGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_TYPE]"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_TYPE]"
+                      name="PERSON_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[CITY]"
+                      dataType="wstr"
+                      length="255"
+                      name="CITY" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[SEX]"
+                      dataType="wstr"
+                      length="255"
+                      name="SEX" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[AGE]"
+                      dataType="i4"
+                      name="AGE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PERSON_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[UNIT_NO]"
+                      dataType="i4"
+                      name="UNIT_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[UNIT_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      name="UNIT_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[DAMAGE_CATEGORY]"
+                      dataType="wstr"
+                      length="255"
+                      name="DAMAGE_CATEGORY" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[SAFETY_EQUIPMENT]"
+                      dataType="wstr"
+                      length="255"
+                      name="SAFETY_EQUIPMENT" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[AIRBAG_DEPLOYED]"
+                      dataType="wstr"
+                      length="255"
+                      name="AIRBAG_DEPLOYED" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[PHYSICAL_CONDITION]"
+                      dataType="wstr"
+                      length="255"
+                      name="PHYSICAL_CONDITION" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[INJURY_CLASSIFICATION]"
+                      dataType="wstr"
+                      length="255"
+                      name="INJURY_CLASSIFICATION" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[BAC_RESULT]"
+                      dataType="wstr"
+                      length="255"
+                      name="BAC_RESULT" />
+                    <externalMetadataColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].ExternalColumns[EJECTION]"
+                      dataType="wstr"
+                      length="255"
+                      name="EJECTION" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_ID]"
+                      name="PERSON_ID" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[CITY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[CITY]"
+                      name="CITY" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[STATE]"
+                      name="STATE" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[SEX]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[SEX]"
+                      name="SEX" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[AGE]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[AGE]"
+                      name="AGE" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output errori origine OLE DB].Columns[PERSON_TYPE]"
+                      name="PERSON_TYPE" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\Sort.Inputs[Sort Input].Columns[Total_Crashes]"
+                      cachedDataType="ui8"
+                      cachedName="Total_Crashes"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[Total_Crashes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\Sort.Inputs[Sort Input].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[YEAR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\Sort.Inputs[Sort Input].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[PERSON_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[Total_Crashes]"
+                      dataType="ui8"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[Total_Crashes]"
+                      name="Total_Crashes"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[Total_Crashes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[YEAR]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\Sort.Outputs[Sort Output].Columns[PERSON_ID]"
+                      name="PERSON_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\SortDamageToUser_SSIS"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordinamento;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Ordina i dati di input in ordine crescente o decrescente quando non possono essere ordinati come la relativa origine. Ad esempio, ordinare i dati delle vendite per 'customer id' prima che vengano scritti in un file flat e recapitati a un altro reparto. Nota: questa trasformazione non è consigliata per i flussi di dati di grandi dimensioni."
+              name="SortDamageToUser_SSIS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se la trasformazione Ordinamento rimuove le righe con valori di ordinamento duplicati."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero massimo di thread da utilizzare per l'ordinamento."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\SortDamageToUser_SSIS.Inputs[Input ordinamento]"
+                  name="Input ordinamento">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Inputs[Input ordinamento].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[DateID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Inputs[Input ordinamento].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Inputs[Input ordinamento].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      lineageId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[RD_NO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento]"
+                  isSorted="true"
+                  name="Output ordinamento">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[DateID]"
+                      name="DateID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[DateID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      name="PERSON_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento].Columns[RD_NO]"
+                      name="RD_NO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB].Columns[RD_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\SortDateDimension_SSIS"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordinamento;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Ordina i dati di input in ordine crescente o decrescente quando non possono essere ordinati come la relativa origine. Ad esempio, ordinare i dati delle vendite per 'customer id' prima che vengano scritti in un file flat e recapitati a un altro reparto. Nota: questa trasformazione non è consigliata per i flussi di dati di grandi dimensioni."
+              name="SortDateDimension_SSIS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se la trasformazione Ordinamento rimuove le righe con valori di ordinamento duplicati."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero massimo di thread da utilizzare per l'ordinamento."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\SortDateDimension_SSIS.Inputs[Input ordinamento]"
+                  name="Input ordinamento">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDateDimension_SSIS.Inputs[Input ordinamento].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[DateID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDateDimension_SSIS.Inputs[Input ordinamento].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[YEAR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento]"
+                  isSorted="true"
+                  name="Output ordinamento">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[DateID]"
+                      name="DateID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[DateID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB].Columns[YEAR]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\SortDmg+Date"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordinamento;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Ordina i dati di input in ordine crescente o decrescente quando non possono essere ordinati come la relativa origine. Ad esempio, ordinare i dati delle vendite per 'customer id' prima che vengano scritti in un file flat e recapitati a un altro reparto. Nota: questa trasformazione non è consigliata per i flussi di dati di grandi dimensioni."
+              name="SortDmg+Date"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se la trasformazione Ordinamento rimuove le righe con valori di ordinamento duplicati."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero massimo di thread da utilizzare per l'ordinamento."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento]"
+                  name="Input ordinamento">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[PERSON_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[RD_NO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[DateID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      lineageId="Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[YEAR]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento]"
+                  isSorted="true"
+                  name="Output ordinamento">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[RD_NO]"
+                      name="RD_NO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[RD_NO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[DateID]"
+                      name="DateID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[DateID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento].Columns[YEAR]"
+                      name="YEAR">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\Merge join.Outputs[Output merge join].Columns[YEAR]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Assignment6a\SortPerson_SSIS"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordinamento;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Ordina i dati di input in ordine crescente o decrescente quando non possono essere ordinati come la relativa origine. Ad esempio, ordinare i dati delle vendite per 'customer id' prima che vengano scritti in un file flat e recapitati a un altro reparto. Nota: questa trasformazione non è consigliata per i flussi di dati di grandi dimensioni."
+              name="SortPerson_SSIS"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se la trasformazione Ordinamento rimuove le righe con valori di ordinamento duplicati."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica il numero massimo di thread da utilizzare per l'ordinamento."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento]"
+                  name="Input ordinamento">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[CITY]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CITY"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[CITY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[STATE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="STATE"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[STATE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[SEX]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="SEX"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[SEX]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[AGE]"
+                      cachedDataType="i4"
+                      cachedName="AGE"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[AGE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento].Columns[PERSON_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_TYPE"
+                      lineageId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_TYPE]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica le opzioni di confronto per i dati di tipo carattere."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifica il tipo di ordinamento della colonna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento]"
+                  isSorted="true"
+                  name="Output ordinamento">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[CITY]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[CITY]"
+                      name="CITY">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[CITY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[STATE]"
+                      name="STATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[STATE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[SEX]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[SEX]"
+                      name="SEX">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[SEX]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[AGE]"
+                      dataType="i4"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[AGE]"
+                      name="AGE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[AGE]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_TYPE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento].Columns[PERSON_TYPE]"
+                      name="PERSON_TYPE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifica l'identificatore di derivazione della colonna di input associata a questa colonna di output."
+                          name="SortColumnId">#{Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB].Columns[PERSON_TYPE]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Assignment6a.Paths[Output aggregazione 1]"
+              endId="Package\Assignment6a\Sort.Inputs[Sort Input]"
+              name="Output aggregazione 1"
+              startId="Package\Assignment6a\Aggregazione.Outputs[Output aggregazione 1]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output merge join]"
+              endId="Package\Assignment6a\SortDmg+Date.Inputs[Input ordinamento]"
+              name="Output merge join"
+              startId="Package\Assignment6a\Merge join.Outputs[Output merge join]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output merge join1]"
+              endId="Package\Assignment6a\Aggregazione.Inputs[Input aggregazione 1]"
+              name="Output merge join"
+              startId="Package\Assignment6a\Merge.Outputs[Output merge join]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output ordinamento]"
+              endId="Package\Assignment6a\Merge join.Inputs[Input merge join sinistro]"
+              name="Output ordinamento"
+              startId="Package\Assignment6a\SortDamageToUser_SSIS.Outputs[Output ordinamento]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output ordinamento1]"
+              endId="Package\Assignment6a\Merge join.Inputs[Input merge join destro]"
+              name="Output ordinamento"
+              startId="Package\Assignment6a\SortDateDimension_SSIS.Outputs[Output ordinamento]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output ordinamento2]"
+              endId="Package\Assignment6a\Merge.Inputs[Input merge join sinistro]"
+              name="Output ordinamento"
+              startId="Package\Assignment6a\SortDmg+Date.Outputs[Output ordinamento]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output ordinamento3]"
+              endId="Package\Assignment6a\Merge.Inputs[Input merge join destro]"
+              name="Output ordinamento"
+              startId="Package\Assignment6a\SortPerson_SSIS.Outputs[Output ordinamento]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output origine OLE DB]"
+              endId="Package\Assignment6a\SortDamageToUser_SSIS.Inputs[Input ordinamento]"
+              name="Output origine OLE DB"
+              startId="Package\Assignment6a\DamageToUser_SSIS.Outputs[Output origine OLE DB]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output origine OLE DB1]"
+              endId="Package\Assignment6a\SortDateDimension_SSIS.Inputs[Input ordinamento]"
+              name="Output origine OLE DB"
+              startId="Package\Assignment6a\DateDimension_SSIS.Outputs[Output origine OLE DB]" />
+            <path
+              refId="Package\Assignment6a.Paths[Output origine OLE DB2]"
+              endId="Package\Assignment6a\SortPerson_SSIS.Inputs[Input ordinamento]"
+              name="Output origine OLE DB"
+              startId="Package\Assignment6a\PersonDimesion_SSIS.Outputs[Output origine OLE DB]" />
+            <path
+              refId="Package\Assignment6a.Paths[Sort Output]"
+              endId="Package\Assignment6a\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Sort Output"
+              startId="Package\Assignment6a\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Assignment6a"
+          TopLeft="295.833317169713,98.7999993129572" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Assignment6a">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="108,41.6"
+          Id="Package\Assignment6a\Merge"
+          TopLeft="387.499978827934,425.46666436447" />
+        <NodeLayout
+          Size="127.2,41.6"
+          Id="Package\Assignment6a\Merge join"
+          TopLeft="219.999987979731,273.866664762232" />
+        <NodeLayout
+          Size="200,41.6"
+          Id="Package\Assignment6a\SortDamageToUser_SSIS"
+          TopLeft="51.3333324682382,161.166665792796" />
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\Assignment6a\DamageToUser_SSIS"
+          TopLeft="62.4999965851506,82.3333327607976" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Assignment6a\SortDmg+Date"
+          TopLeft="212.166655374898,355.43333098895" />
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Assignment6a\PersonDimesion_SSIS"
+          TopLeft="555.211609835668,80.4753806482319" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Assignment6a\DateDimension_SSIS"
+          TopLeft="313.333316213556,85.7999994033575" />
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Assignment6a\SortPerson_SSIS"
+          TopLeft="566.7592282929,357.451849366176" />
+        <NodeLayout
+          Size="198.4,41.6"
+          Id="Package\Assignment6a\SortDateDimension_SSIS"
+          TopLeft="305.833316623337,160.333332218395" />
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\Assignment6a\Aggregazione"
+          TopLeft="384.999978964528,512.26666425599" />
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output origine OLE DB2]"
+          TopLeft="646.985419064284,122.075380648232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,235.376468717944"
+              Start="0,0"
+              End="0,227.876468717944">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,227.876468717944" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output origine OLE DB1]"
+          TopLeft="403.983316418447,127.399999403357">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.9333328150378"
+              Start="0,0"
+              End="0,25.4333328150378">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4333328150378" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output origine OLE DB]"
+          TopLeft="152.316664526694,123.933332760798">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.2333330319988"
+              Start="0,0"
+              End="0,29.7333330319988">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.7333330319988" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output ordinamento3]"
+          TopLeft="646.7592282929,399.051849366176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-188.592582798299,26.4148149982945"
+              Start="0,0"
+              End="-188.592582798299,18.9148149982945">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.6175183566559" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.6175183566559"
+                    Point2="0,15.6175183566559"
+                    Point3="-4,15.6175183566559" />
+                  <mssgle:LineSegment
+                    End="-184.592582798299,15.6175183566559" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-184.592582798299,15.6175183566559"
+                    Point2="-188.592582798299,15.6175183566559"
+                    Point3="-188.592582798299,19.6175183566559" />
+                  <mssgle:LineSegment
+                    End="-188.592582798299,18.9148149982945" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output ordinamento2]"
+          TopLeft="285.766655374898,397.03333098895">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.066656786369,28.4333333755203"
+              Start="0,0"
+              End="139.066656786369,20.9333333755203">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.8109489300522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.8109489300522"
+                    Point2="0,16.8109489300522"
+                    Point3="4,16.8109489300522" />
+                  <mssgle:LineSegment
+                    End="135.066656786369,16.8109489300522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135.066656786369,16.8109489300522"
+                    Point2="139.066656786369,16.8109489300522"
+                    Point3="139.066656786369,20.8109489300522" />
+                  <mssgle:LineSegment
+                    End="139.066656786369,20.9333333755203" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output ordinamento1]"
+          TopLeft="405.033316623337,201.933332218395">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-101.56666197694,71.9333325438368"
+              Start="0,0"
+              End="-101.56666197694,64.4333325438368">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.6238504638636" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.6238504638636"
+                    Point2="0,42.6238504638636"
+                    Point3="-4,42.6238504638636" />
+                  <mssgle:LineSegment
+                    End="-97.5666619769402,42.6238504638636" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-97.5666619769402,42.6238504638636"
+                    Point2="-101.56666197694,42.6238504638636"
+                    Point3="-101.56666197694,46.6238504638636" />
+                  <mssgle:LineSegment
+                    End="-101.56666197694,64.4333325438368" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output ordinamento]"
+          TopLeft="151.333332468238,202.766665792796">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="112.399988844826,71.0999989694356"
+              Start="0,0"
+              End="112.399988844826,63.5999989694356">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1300615011438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.1300615011438"
+                    Point2="0,42.1300615011438"
+                    Point3="4,42.1300615011438" />
+                  <mssgle:LineSegment
+                    End="108.399988844826,42.1300615011438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="108.399988844826,42.1300615011438"
+                    Point2="112.399988844826,42.1300615011438"
+                    Point3="112.399988844826,46.1300615011438" />
+                  <mssgle:LineSegment
+                    End="112.399988844826,63.5999989694356" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output merge join1]"
+          TopLeft="441.499978827934,467.066664364471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.7000001365938,45.1999998915193"
+              Start="0,0"
+              End="14.7000001365938,37.6999998915193">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5999999457596" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5999999457596"
+                    Point2="0,22.5999999457596"
+                    Point3="4,22.5999999457596" />
+                  <mssgle:LineSegment
+                    End="10.7000001365938,22.5999999457596" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.7000001365938,22.5999999457596"
+                    Point2="14.7000001365938,22.5999999457596"
+                    Point3="14.7000001365938,26.5999999457596" />
+                  <mssgle:LineSegment
+                    End="14.7000001365938,37.6999998915193" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output merge join]"
+          TopLeft="284.683321677315,315.466664762232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.9666662267181"
+              Start="0,0"
+              End="0,32.4666662267181">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.4666662267181" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Assignment6a\Sort"
+          TopLeft="412.857143736007,584.482352570504" />
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Output aggregazione 1]"
+          TopLeft="458.928561350268,553.86666425599">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.6156883145137"
+              Start="0,0"
+              End="0,23.1156883145137">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1156883145137" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Assignment6a\Flat File Destination"
+          TopLeft="380.00000080892,662.635293605542" />
+        <EdgeLayout
+          Id="Package\Assignment6a.Paths[Sort Output]"
+          TopLeft="463.628572272464,626.082352570504">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.5529410350384"
+              Start="0,0"
+              End="0,29.0529410350384">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.0529410350384" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Assignment6a\DamageToUser_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Assignment6a\DateDimension_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Assignment6a\PersonDimesion_SSIS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

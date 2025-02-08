@@ -1,0 +1,844 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/3/2024 11:14:39 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DELL-AM"
+  DTS:CreatorName="DELL-AM\aldom"
+  DTS:DTSID="{797D46C2-71B4-442B-8D21-56F0903DD2F5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="test"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{4E1BD64E-2128-4E49-B15F-174D61FAFDA4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0516C927-49AC-4976-A533-C0F2C2EE3804}"
+      DTS:ObjectName="lds.di.unipi.it.Group_ID_8_DB.Group_ID_8">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=lds.di.unipi.it;User ID=Group_ID_8;Initial Catalog=Group_ID_8_DB;Provider=SQLNCLI11.1;Persist Security Info=True;Application Name=SSIS-Package1-{0516C927-49AC-4976-A533-C0F2C2EE3804}lds.di.unipi.it.Group_ID_8_DB.Group_ID_8;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXDtdSaVr1UGp0XMZ0pyh5AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAuX1Ax9AjfCKbngcnTntO7N2VkgZKQydhJ+Y1nWZxGqAAAAAAOgAAAAAIAACAAAABTzoy7qhRGeWwh886/jXF1KhZv35bKUBCbpIlFv1XsriAAAAD2Mf76shN5NoAT6jJQf9XOdwYria+ysob/b/SiUSFKO0AAAAB6AvKWg+c9RtU8V+5VExAC3UdtSJuCeUFugBlg0LpbYX8oTDPSqahnkyZXIRx56kb8COQDcYjdR/wi41LlAVC6</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{766DDE44-ED58-4573-8B3D-1B253214DD7F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DimensionTableName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BFCEC225-8CB6-43B5-B6B4-335BD40A5160}"
+      DTS:Expression="&quot;C:\\Users\\aldom\\Desktop\\test\\&quot; + @[User::DimensionTableName] + &quot;.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E983278B-F651-451D-B54D-E2737DEBCCED}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLQuery">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{37671F52-3209-44E2-AC7A-D6AFE4E9332F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fact Table"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{b623269b-cdc0-4f39-ae41-7be7b672fd60}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fact Table"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Fact Table\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Group_ID_8].[DamageToUser_SSIS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fact Table\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DTUID]"
+                      cachedDataType="i4"
+                      cachedName="DTUID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DTUID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DTUID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateID]"
+                      cachedDataType="i4"
+                      cachedName="DateID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PERSON_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PERSON_ID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSON_ID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSON_ID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LocationID]"
+                      cachedDataType="i4"
+                      cachedName="LocationID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WeatherID]"
+                      cachedDataType="i4"
+                      cachedName="WeatherID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeatherID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InjuryID]"
+                      cachedDataType="i4"
+                      cachedName="InjuryID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InjuryID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[InjuryID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CauseID]"
+                      cachedDataType="i4"
+                      cachedName="CauseID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VEHICLE_ID]"
+                      cachedDataType="i4"
+                      cachedName="VEHICLE_ID"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEHICLE_ID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VEHICLE_ID]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RD_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RD_NO"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RD_NO]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD_NO]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DAMAGE]"
+                      cachedDataType="r8"
+                      cachedName="DAMAGE"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DAMAGE]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAMAGE]" />
+                    <inputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[NUM_UNITS]"
+                      cachedDataType="i4"
+                      cachedName="NUM_UNITS"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_UNITS]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUM_UNITS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DTUID]"
+                      dataType="i4"
+                      name="DTUID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateID]"
+                      dataType="i4"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      dataType="i4"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WeatherID]"
+                      dataType="i4"
+                      name="WeatherID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InjuryID]"
+                      dataType="i4"
+                      name="InjuryID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseID]"
+                      dataType="i4"
+                      name="CauseID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VEHICLE_ID]"
+                      dataType="i4"
+                      name="VEHICLE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      name="RD_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DAMAGE]"
+                      dataType="r8"
+                      name="DAMAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NUM_UNITS]"
+                      dataType="i4"
+                      name="NUM_UNITS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fact Table\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Group_ID_8].[DamageToUser]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Fact Table\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  connectionManagerRefId="Package.ConnectionManagers[lds.di.unipi.it.Group_ID_8_DB.Group_ID_8]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DTUID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DTUID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DTUID]"
+                      name="DTUID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateID]"
+                      name="DateID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERSON_ID]"
+                      length="255"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[PERSON_ID]"
+                      name="PERSON_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationID]"
+                      name="LocationID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeatherID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeatherID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[WeatherID]"
+                      name="WeatherID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[InjuryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InjuryID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[InjuryID]"
+                      name="InjuryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CauseID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseID]"
+                      name="CauseID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VEHICLE_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VEHICLE_ID]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[VEHICLE_ID]"
+                      name="VEHICLE_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RD_NO]"
+                      length="255"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[RD_NO]"
+                      name="RD_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAMAGE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DAMAGE]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[DAMAGE]"
+                      name="DAMAGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUM_UNITS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NUM_UNITS]"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].Columns[NUM_UNITS]"
+                      name="NUM_UNITS"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DTUID]"
+                      dataType="i4"
+                      name="DTUID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateID]"
+                      dataType="i4"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="PERSON_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
+                      dataType="i4"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WeatherID]"
+                      dataType="i4"
+                      name="WeatherID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InjuryID]"
+                      dataType="i4"
+                      name="InjuryID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CauseID]"
+                      dataType="i4"
+                      name="CauseID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VEHICLE_ID]"
+                      dataType="i4"
+                      name="VEHICLE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      name="RD_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DAMAGE]"
+                      dataType="r8"
+                      name="DAMAGE" />
+                    <externalMetadataColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NUM_UNITS]"
+                      dataType="i4"
+                      name="NUM_UNITS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DTUID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DTUID]"
+                      name="DTUID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateID]"
+                      name="DateID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERSON_ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PERSON_ID]"
+                      name="PERSON_ID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
+                      name="LocationID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeatherID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WeatherID]"
+                      name="WeatherID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InjuryID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InjuryID]"
+                      name="InjuryID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CauseID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CauseID]"
+                      name="CauseID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VEHICLE_ID]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VEHICLE_ID]"
+                      name="VEHICLE_ID" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RD_NO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RD_NO]"
+                      name="RD_NO" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DAMAGE]"
+                      dataType="r8"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DAMAGE]"
+                      name="DAMAGE" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NUM_UNITS]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NUM_UNITS]"
+                      name="NUM_UNITS" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Fact Table\Percentage Sampling"
+              componentClassID="Microsoft.PctSampling"
+              contactInfo="Percentage Sampling;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Randomly samples a percentage of rows from an input data flow. For example, use it twice to help create a data mining model: create one sample for training the model and another sample for testing the model."
+              name="Percentage Sampling">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage size of the sample."
+                  expressionType="Notify"
+                  name="SamplingValue">10</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the seed for the random number generator."
+                  name="SamplingSeed">0</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]"
+                  name="Percentage Sampling Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Fact Table\Percentage Sampling.Outputs[Sampling Selected Output]"
+                  exclusionGroup="1"
+                  name="Sampling Selected Output"
+                  synchronousInputId="Package\Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Fact Table\Percentage Sampling.Outputs[Sampling Unselected Output]"
+                  exclusionGroup="1"
+                  name="Sampling Unselected Output"
+                  synchronousInputId="Package\Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Output for rows in the sample"
+                      name="Selected">false</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Fact Table.Paths[OLE DB Source Output]"
+              endId="Package\Fact Table\Percentage Sampling.Inputs[Percentage Sampling Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\Fact Table\OLE DB Source.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Fact Table.Paths[Sampling Selected Output]"
+              endId="Package\Fact Table\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Sampling Selected Output"
+              startId="Package\Fact Table\Percentage Sampling.Outputs[Sampling Selected Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Dimension Table"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{454C65E6-73F6-4AB8-BD93-F4104D37BA8E}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Dimension Table">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{B69FFD87-2489-4E32-BF6E-E84F6918F41E}"
+        DTS:ObjectName="{B69FFD87-2489-4E32-BF6E-E84F6918F41E}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::TableList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables />
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{4C9FB2F6-E4A7-41EB-B8D7-AC170DDB3389}"
+          DTS:ObjectName="{4C9FB2F6-E4A7-41EB-B8D7-AC170DDB3389}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::DimensionTableName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get Dimension Tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6A3526CB-2BB2-420C-8BD6-2822A4DC37EA}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get Dimension Tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0516C927-49AC-4976-A533-C0F2C2EE3804}"
+          SQLTask:SqlStatementSource="SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES&#xA;WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME LIKE '%Dimension'&#xA;"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TableList" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="127.2,41.6"
+          Id="Package\Fact Table"
+          TopLeft="107.142857243212,15.6470588624065" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Get Dimension Tables"
+          TopLeft="82.857143033524,97.8823528553788" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,120"
+          Size="204.8,163.2"
+          Id="Package\Foreach Dimension Table"
+          TopLeft="76.4285715912677,188.882352775614" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Fact Table">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Fact Table\OLE DB Source"
+          TopLeft="235.999996483326,88.9999986737967" />
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Fact Table\Percentage Sampling"
+          TopLeft="248.999996289611,218.999996736646" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Fact Table\OLE DB Destination"
+          TopLeft="251.999996244907,354.999994710088" />
+        <EdgeLayout
+          Id="Package\Fact Table.Paths[Sampling Selected Output]"
+          TopLeft="337.499996267259,260.599996736646">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,94.3999979734421"
+              Start="0,0"
+              End="0,86.8999979734421">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.8999979734421" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.94205078125,37.6184560179711,115.8841015625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Fact Table.Paths[OLE DB Source Output]"
+          TopLeft="310.799996483326,130.599998673797">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.9999998062848,88.3999980628491"
+              Start="0,0"
+              End="26.9999998062848,80.8999980628491">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.1999990314246" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.1999990314246"
+                    Point2="0,44.1999990314246"
+                    Point3="4,44.1999990314246" />
+                  <mssgle:LineSegment
+                    End="22.9999998062848,44.1999990314246" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.9999998062848,44.1999990314246"
+                    Point2="26.9999998062848,44.1999990314246"
+                    Point3="26.9999998062848,48.1999990314246" />
+                  <mssgle:LineSegment
+                    End="26.9999998062848,80.8999980628491" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
